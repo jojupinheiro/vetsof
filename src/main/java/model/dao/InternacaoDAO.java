@@ -9,7 +9,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javafx.scene.control.Alert;
 import model.classes.Clinica;
 import model.classes.DiariaInternacao;
@@ -43,6 +45,7 @@ public class InternacaoDAO {
         this.con = con;
     }
     
+    /*
     public List<Internado> getAll(int filtroSelecionado, String txtFiltro) {
         List<Internado> list = new ArrayList<>();
         ResultSet res = null;
@@ -252,6 +255,116 @@ public class InternacaoDAO {
             DB.closeStatement(stmt);
             return list;
         }
+    }
+    */
+    
+    public List<Internado> getAll(int filtroSelecionado, String txtFiltro) {
+        // LinkedHashMap mantém a ordem de inserção, o que pode ser útil.
+        Map<Integer, Internado> internadosMap = new LinkedHashMap<>();
+
+        ResultSet res = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT " +
+            "i.pk_idinternado, i.dtinternacao_internado, i.dtalta_internado, i.valor_diaria_internado, i.valor_total_internado, i.observacoes_internado, i.ativo_internado, " +
+            "pet.pk_idpet, pet.nome_pet, pet.peso_pet, pet.sexo_pet, pet.rfid_pet, pet.observacao_pet, pet.castrado_pet, pet.adotado_pet, pet.vivo_pet, pet.dtnascimento_pet, pet.temperamento_pet, " +
+            "raca.pk_idraca, raca.nome_raca, " +
+            "esp.pk_idespecie, esp.nome_especie, " +
+            "t.pk_idtutor, t.cpf_tutor, t.nome_tutor, t.rua_tutor, t.numero_tutor, t.cep_tutor, t.tipo_tutor, t.telefone_tutor, t.telefone_alternativo_tutor, t.email_tutor, t.observacao_tutor, t.faixarenda_tutor, t.sexo_tutor, t.dtnascimento_tutor, " +
+            "mt.pk_idmunicipio AS id_municipio_tutor, mt.nome_municipio AS nome_municipio_tutor, mt.estado_municipio AS estado_tutor, " +
+            "bt.pk_idbairro AS id_bairro_tutor, bt.nome_bairro AS nome_bairro_tutor, " +
+            "v.pk_idveterinario, v.nome_veterinario, v.cpf_veterinario, v.crmv_veterinario, v.email_veterinario, v.telefone_veterinario, v.rua_veterinario, v.numero_veterinario, v.cep_veterinario, v.sexo_veterinario, v.observacao_veterinario, " +
+            "mv.pk_idmunicipio AS id_municipio_veterinario, mv.nome_municipio AS nome_municipio_veterinario, mv.estado_municipio AS estado_veterinario, " +
+            "bv.pk_idbairro AS id_bairro_veterinario, bv.nome_bairro AS nome_bairro_veterinario, " +
+            "di.pk_iddiaria_internacao, di.numero_diaria_internacao, di.sinais_clinicos_diaria_internacao, di.notas_diaria_internacao, di.tratamento_diaria_internacao, di.data_diaria_internacao " +
+            "FROM internado i " +
+            "JOIN pet ON i.fk_idpet_internado = pet.pk_idpet " +
+            "JOIN especie esp ON esp.pk_idespecie = pet.fk_idespecie_pet " +
+            "JOIN raca ON raca.pk_idraca = pet.fk_idraca_pet " +
+            "JOIN tutor t ON t.pk_idtutor = pet.fk_idtutor_pet " +
+            "JOIN municipio mt ON t.fk_idmunicipio_tutor = mt.pk_idmunicipio " +
+            "JOIN bairro bt ON t.fk_idbairro_tutor = bt.pk_idbairro " +
+            "JOIN veterinario v ON v.pk_idveterinario = i.fk_idveterinario_internado " +
+            "JOIN municipio mv ON v.fk_idmunicipio_veterinario = mv.pk_idmunicipio " +
+            "JOIN bairro bv ON v.fk_idbairro_veterinario = bv.pk_idbairro " +
+            "LEFT JOIN diaria_internacao di ON i.pk_idinternado = di.fk_idinternado_diaria_internacao " +
+            // Você precisa RECONSTRUIR a lógica do filtro aqui.
+            // Exemplo: " WHERE pet.nome_pet LIKE ? "
+            "ORDER BY i.pk_idinternado, di.pk_iddiaria_internacao";
+
+        try {
+            stmt = con.prepareStatement(sql);
+            // Coloque aqui a lógica para aplicar o filtro (stmt.setString, etc.)
+            // if (filtroSelecionado == ... ) { stmt.setString(1, "%" + txtFiltro + "%"); }
+
+            res = stmt.executeQuery();
+
+            while (res.next()) {
+                int idInternado = res.getInt("pk_idinternado");
+                Internado internado = internadosMap.get(idInternado);
+
+                // Se o 'internado' ainda não está no map, cria o objeto completo.
+                if (internado == null) {
+                    // Endereço e dados do Veterinário
+                    Municipio municipioVeterinario = new Municipio(res.getInt("id_municipio_veterinario"), res.getString("nome_municipio_veterinario"), res.getString("estado_veterinario"));
+                    Bairro bairroVeterinario = new Bairro(res.getInt("id_bairro_veterinario"), res.getString("nome_bairro_veterinario"), municipioVeterinario);
+                    // A lista de clínicas foi removida pois causava outro N+1. Carregue-a separadamente quando precisar.
+                    Veterinario veterinario = new Veterinario(res.getInt("pk_idveterinario"), res.getString("nome_veterinario"), res.getString("cpf_veterinario"), res.getString("crmv_veterinario"), res.getString("email_veterinario"), res.getString("telefone_veterinario"), municipioVeterinario, bairroVeterinario, res.getString("rua_veterinario"), res.getString("numero_veterinario"), res.getString("cep_veterinario"), res.getBoolean("sexo_veterinario"), res.getString("observacao_veterinario"), new ArrayList<>());
+
+                    // Endereço e dados do Tutor
+                    Municipio municipioTutor = new Municipio(res.getInt("id_municipio_tutor"), res.getString("nome_municipio_tutor"), res.getString("estado_tutor"));
+                    Bairro bairroTutor = new Bairro(res.getInt("id_bairro_tutor"), res.getString("nome_bairro_tutor"), municipioTutor);
+                    LocalDate dtNascTutor = (res.getDate("dtnascimento_tutor") == null) ? null : res.getDate("dtnascimento_tutor").toLocalDate();
+                    Tutor tutor = new Tutor(res.getInt("pk_idtutor"), res.getString("cpf_tutor"), res.getString("nome_tutor"), res.getString("rua_tutor"), bairroTutor, res.getString("numero_tutor"), res.getString("cep_tutor"), municipioTutor, res.getString("tipo_tutor"), res.getString("telefone_tutor"), res.getString("telefone_alternativo_tutor"), res.getString("email_tutor"), res.getString("observacao_tutor"), res.getInt("faixarenda_tutor"), res.getBoolean("sexo_tutor"), dtNascTutor);
+
+                    // Especie, Raça e Pet
+                    Especie especiePet = new Especie(res.getInt("pk_idespecie"), res.getString("nome_especie"));
+                    Raca racaPet = new Raca(res.getInt("pk_idraca"), res.getString("nome_raca"), especiePet);
+                    LocalDate dataNascimentoPet = (res.getDate("dtnascimento_pet") == null) ? null : res.getDate("dtnascimento_pet").toLocalDate();
+                    String stringTemperamento = res.getString("temperamento_pet");
+                    List<String> listTemperamento = (stringTemperamento != null) ? Arrays.asList(stringTemperamento.split(" ")) : null;
+                    Pet pet = new Pet(res.getInt("pk_idpet"), res.getString("nome_pet"), racaPet, res.getDouble("peso_pet"), res.getBoolean("sexo_pet"), res.getString("rfid_pet"), res.getString("observacao_pet"), res.getBoolean("castrado_pet"), res.getBoolean("adotado_pet"), dataNascimentoPet, tutor, res.getBoolean("vivo_pet"), listTemperamento);
+
+                    // Finalmente, o Internado
+                    LocalDate dtInternacao = res.getDate("dtinternacao_internado").toLocalDate();
+                    LocalDate dtAlta = (res.getDate("dtalta_internado") == null) ? null : res.getDate("dtalta_internado").toLocalDate();
+                    internado = new Internado(idInternado, pet, veterinario, dtInternacao, dtAlta, res.getFloat("valor_diaria_internado"), res.getFloat("valor_total_internado"), res.getString("observacoes_internado"), new ArrayList<>(), res.getBoolean("ativo_internado"));
+
+                    internadosMap.put(idInternado, internado);
+                }
+
+                // Agora, processa a diária (se existir nesta linha do resultado)
+                int idDiaria = res.getInt("pk_iddiaria_internacao");
+                if (idDiaria > 0) {
+                    // Evita adicionar a mesma diária múltiplas vezes
+                    boolean diariaJaExiste = internado.getDiaria().stream().anyMatch(d -> d.getId() == idDiaria);
+                    if (!diariaJaExiste) {
+                        DiariaInternacao diaria = new DiariaInternacao(
+                            idDiaria,
+                            res.getString("notas_diaria_internacao"),
+                            res.getString("tratamento_diaria_internacao"),
+                            new ArrayList<>(), // listaServicos - carregar sob demanda
+                            new ArrayList<>(), // listaExames - carregar sob demanda
+                            new ArrayList<>()  // listaConsumo - carregar sob demanda
+                        );
+                        diaria.setNumeroDiaria(res.getInt("numero_diaria_internacao"));
+                        diaria.setSinaisClinicos(res.getString("sinais_clinicos_diaria_internacao"));
+                        diaria.setData(res.getDate("data_diaria_internacao").toLocalDate());
+                        diaria.setListaVacinas(new ArrayList<>()); // carregar sob demanda
+
+                        internado.getDiaria().add(diaria);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Lidar com a exceção de forma apropriada
+        } finally {
+            DB.closeResultSet(res);
+            DB.closeStatement(stmt);
+        }
+
+        return new ArrayList<>(internadosMap.values());
     }
     
      public boolean inserirInternado(Internado internado) {

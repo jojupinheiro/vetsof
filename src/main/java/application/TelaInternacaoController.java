@@ -37,32 +37,48 @@ import view.utils.Utils;
 /**
  * FXML Controller class
  *
- * @author João Juliano Pinheiro - joaojulianopinheiro@hotmail.com - Venâncio Aires - RS
+ * @author João Juliano Pinheiro - joaojulianopinheiro@hotmail.com - Venâncio
+ * Aires - RS
  */
 public class TelaInternacaoController implements Initializable {
 
-    @FXML    private Button btnFiltrar;
-    @FXML    private Button btnLimpar;
-    @FXML    private Button btnNovoInternado;
-    @FXML    private CheckBox ckbSomenteInternados;
-    @FXML    private ComboBox<String> cmbFiltro;
-    @FXML    private TableColumn<Internado, Integer> tableColumnDiarias;
-    @FXML    private TableColumn<Internado, LocalDate> tableColumnDtAlta;
-    @FXML    private TableColumn<Internado, LocalDate> tableColumnDtInternacao;
-    @FXML    private TableColumn<Internado, Pet> tableColumnNome;
-    @FXML    private TableColumn<Internado, Boolean> tableColumnInternado;
-    @FXML    private TableColumn<Internado, Tutor> tableColumnTutor;
-    @FXML    private TableColumn<Internado, Float> tableColumnValorDiaria;
-    @FXML    private TableColumn<Internado, Float> tableColumnValorTotal;
-    @FXML    private TableColumn<Internado, Veterinario> tableColumnVeterinario;
-    @FXML    private TableView<Internado> tblInternacao;
-    @FXML    private TextField txtBusca;
-    
-    
+    @FXML
+    private Button btnFiltrar;
+    @FXML
+    private Button btnLimpar;
+    @FXML
+    private Button btnNovoInternado;
+    @FXML
+    private CheckBox ckbSomenteInternados;
+    @FXML
+    private ComboBox<String> cmbFiltro;
+    @FXML
+    private TableColumn<Internado, Integer> tableColumnDiarias;
+    @FXML
+    private TableColumn<Internado, LocalDate> tableColumnDtAlta;
+    @FXML
+    private TableColumn<Internado, LocalDate> tableColumnDtInternacao;
+    @FXML
+    private TableColumn<Internado, Pet> tableColumnNome;
+    @FXML
+    private TableColumn<Internado, Boolean> tableColumnInternado;
+    @FXML
+    private TableColumn<Internado, Tutor> tableColumnTutor;
+    @FXML
+    private TableColumn<Internado, Float> tableColumnValorDiaria;
+    @FXML
+    private TableColumn<Internado, Float> tableColumnValorTotal;
+    @FXML
+    private TableColumn<Internado, Veterinario> tableColumnVeterinario;
+    @FXML
+    private TableView<Internado> tblInternacao;
+    @FXML
+    private TextField txtBusca;
+
     private String txtFiltro = "";
     private int filtroSelecionado = -1;
-    List<Internado> listaInternados = new InternacaoService().getAll(filtroSelecionado, txtFiltro);
-    
+    private ObservableList<Internado> listaObsInternados;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tableColumnDiarias.setCellValueFactory(new PropertyValueFactory<>("NumeroDiarias"));
@@ -74,7 +90,11 @@ public class TelaInternacaoController implements Initializable {
         tableColumnValorTotal.setCellValueFactory(new PropertyValueFactory<>("ValorTotal"));
         tableColumnVeterinario.setCellValueFactory(new PropertyValueFactory<>("Veterinario"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nomePet"));
-        
+
+        carregarDadosDoBanco();
+
+        configurarFiltro();
+
         tblInternacao.setRowFactory(
                 new Callback<TableView<Internado>, TableRow<Internado>>() {
             @Override
@@ -83,34 +103,33 @@ public class TelaInternacaoController implements Initializable {
                 final ContextMenu rowMenu = new ContextMenu();
                 MenuItem novo = new MenuItem("Adicionar pet à internação");
                 novo.setOnAction((t) -> {
-                    new MenuPrincipal().cadastrarInternado(btnFiltrar.getScene().getWindow());
-                    atualizaTabela(filtroSelecionado, txtFiltro);
-                    filtrarLista();
+                    carregarDadosDoBanco();
+                    tblInternacao.refresh();
                 });
 
                 MenuItem editItem = new MenuItem("Editar Internado");
                 editItem.setOnAction((t) -> {
                     Internado internado = row.getItem();
                     new MenuPrincipal().editarInternado(internado, btnFiltrar.getScene().getWindow());
-                    atualizaTabela(filtroSelecionado, txtFiltro);
-                    filtrarLista();
+                    carregarDadosDoBanco();
+                    tblInternacao.refresh();
                 });
 
                 MenuItem verPet = new MenuItem("Ver Cadastro do Pet");
                 verPet.setOnAction((t) -> {
                     Pet pet = row.getItem().getPet();
                     new MenuPrincipal().editarPet(pet, btnFiltrar.getScene().getWindow());
-                    atualizaTabela(filtroSelecionado, txtFiltro);
-                    filtrarLista();
+                    carregarDadosDoBanco();
+                    tblInternacao.refresh();
                 });
-                
+
                 MenuItem removerDaSala = new MenuItem("Remover da Sala de Internação");
                 removerDaSala.setOnAction((t) -> {
                     Internado internado = row.getItem();
                     internado.setInternacaoAtiva(false);
                     new InternacaoService().salvarOuAtualizarInternado(internado);
-                    atualizaTabela(filtroSelecionado, txtFiltro);
-                    filtrarLista();
+                    carregarDadosDoBanco();
+                    tblInternacao.refresh();
                 });
 
                 MenuItem removeItem = new MenuItem("Excluir registro");
@@ -122,14 +141,14 @@ public class TelaInternacaoController implements Initializable {
                         al.setTitle("Confirmação");
                         al.setContentText(row.getItem().getNomePet() + " será excluído! Tem certeza?");
                         if (al.showAndWait().get() == ButtonType.OK) {
+                            Internado internadoParaExcluir = row.getItem();
                             if (new InternacaoService().excluir(row.getItem())) {
+                                listaObsInternados.remove(internadoParaExcluir);
                                 Alert mens = new Alert(Alert.AlertType.INFORMATION);
                                 mens.initOwner(btnFiltrar.getScene().getWindow());
                                 mens.setTitle("Excluído");
                                 mens.setContentText("Registro excluído com sucesso!");
                                 mens.showAndWait();
-                                atualizaTabela(filtroSelecionado, txtFiltro);
-                                filtrarLista();
                             }
                         }
                     }
@@ -144,57 +163,62 @@ public class TelaInternacaoController implements Initializable {
                 return row;
             }
         });
-        
+
         tblInternacao.setOnMouseClicked((mouseEvent) -> {
             if (mouseEvent.getClickCount() == 2 && mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 Internado internado = tblInternacao.getSelectionModel().getSelectedItem();
                 //criando a tela de Cadastro e passando Pet como parâmetro
                 new MenuPrincipal().editarInternado(internado, btnFiltrar.getScene().getWindow());
-                atualizaTabela(filtroSelecionado, txtFiltro);
-                filtrarLista();
+                carregarDadosDoBanco();
+                tblInternacao.refresh();
             }
         });
-        
+
         btnNovoInternado.setOnAction((t) -> {
             new MenuPrincipal().cadastrarInternado(btnFiltrar.getScene().getWindow());
-            atualizaTabela(filtroSelecionado, txtFiltro);
-            filtrarLista();
+            carregarDadosDoBanco();
+            tblInternacao.refresh();
         });
-        
+
         ckbSomenteInternados.selectedProperty().addListener((t, ov, nv) -> {
             tableColumnInternado.setVisible(ckbSomenteInternados.isSelected() ? false : true);
-            filtrarLista();
         });
+
         ckbSomenteInternados.setSelected(true);
-    }    
-    
-    private void atualizaTabela(int filtroSelecionado, String txtFiltro){
-        // Buscar os dados no banco de dados na tabela atendimento
-        listaInternados = new InternacaoService().getAll(filtroSelecionado, txtFiltro);
-        
     }
-    
-    private void filtrarLista(){
-        // ObservableList
-        ObservableList<Internado> listaObs = FXCollections.observableArrayList(listaInternados);
-        
-        // Criar a lista filtrável
-        FilteredList<Internado> listaObsFiltrada = new FilteredList<>(listaObs, p -> true);
-        
-        listaObsFiltrada.setPredicate(item -> {
-            if(!ckbSomenteInternados.isSelected()){
-                return true;
-            }
-            return item.isInternacaoAtiva();
+
+    private void carregarDadosDoBanco() {
+        // Busca os dados no banco
+        InternacaoService service = new InternacaoService();
+        List<Internado> listaDoBanco = service.getAll(filtroSelecionado, txtFiltro);
+
+        // Converte para ObservableList
+        listaObsInternados = FXCollections.observableArrayList(listaDoBanco);
+    }
+
+    private void configurarFiltro() {
+        // Cria a lista filtrável a partir da lista principal
+        FilteredList<Internado> listaFiltrada = new FilteredList<>(listaObsInternados, p -> true);
+
+        // Adiciona o listener para o checkbox
+        ckbSomenteInternados.selectedProperty().addListener((obs, oldValue, newValue) -> {
+            listaFiltrada.setPredicate(internado -> {
+                if (!newValue) { // Se o checkbox não estiver marcado, mostra tudo
+                    return true;
+                }
+                // Se estiver marcado, mostra apenas os com internação ativa
+                return internado != null && internado.isInternacaoAtiva();
+            });
         });
-        
-        //Vinculando a lista observável com a TableView
-        tblInternacao.setItems(listaObsFiltrada);
-        
+
+        // Vincula a lista filtrada com a TableView
+        tblInternacao.setItems(listaFiltrada);
+
+        // Formata as colunas
         Utils.formatTableColumnDate(tableColumnDtAlta);
         Utils.formatTableColumnDate(tableColumnDtInternacao);
         Utils.formatTableColumnFloat(tableColumnValorTotal);
         Utils.formatTableColumnFloat(tableColumnValorDiaria);
     }
-    
+
 }

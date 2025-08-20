@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="1100.0" styleClass="fundo1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TelaAdministradorController">
+   <children>
+      <TabPane prefHeight="1019.0" prefWidth="1172.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Município/bairro">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="588.0" prefWidth="794.0">
+                     <children>
+                        <GridPane alignment="CENTER" prefHeight="169.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="217.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="15.0" minWidth="5.0" prefWidth="15.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="15.0" minHeight="0.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="15.0" minHeight="10.0" prefHeight="15.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Separator GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Separator GridPane.rowIndex="1" />
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="300.0" prefWidth="300.0" text="Município" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Município" />
+                                    <TextField fx:id="txtMunicipio" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label fx:id="lblErroMunicipio" maxHeight="300.0" prefWidth="300.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Estado" />
+                                    <TextField fx:id="txtEstado" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                 </children>
+                              </VBox>
+                              <Separator GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <Separator GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Button fx:id="btnSalvarMunicipio" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Salvar" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <Separator GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                 <children>
+                                    <Label maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Município" />
+                                    <ComboBox fx:id="cmbMunicipio" maxWidth="250.0" prefWidth="150.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label fx:id="lblErroDeletarMunicipio" maxHeight="150.0" prefWidth="150.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
+                                 <children>
+                                    <Button fx:id="btnDeletarMunicipio" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Deletar">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExcluir" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="300.0" prefWidth="300.0" text="Bairro" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="TOP_LEFT" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Município" />
+                                    <ComboBox fx:id="cmbInserirMunicipioBairro" maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Bairro" />
+                                    <TextField fx:id="txtBairro" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label fx:id="lblErroBairro" maxHeight="300.0" prefWidth="300.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button fx:id="btnSalvarBairro" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Salvar" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Município" />
+                                    <ComboBox fx:id="cmbMunicipioBairro" maxWidth="250.0" prefWidth="150.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label maxHeight="150.0" prefWidth="250.0" styleClass="lblPequeno" text="Bairro" />
+                                    <ComboBox fx:id="cmbBairro" maxWidth="250.0" prefWidth="150.0" promptText="Selecione" />
+                                    <Label fx:id="lblErroDeletarBairro" maxHeight="150.0" prefWidth="150.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button fx:id="btnDeletarBairro" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Deletar">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExcluir" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Separator prefHeight="0.0" prefWidth="1166.0" GridPane.rowIndex="3" />
+                              <Separator prefHeight="0.0" prefWidth="1166.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Separator minWidth="250.0" prefHeight="0.0" prefWidth="1200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Separator prefHeight="0.0" prefWidth="1166.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <Separator prefHeight="0.0" prefWidth="1166.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="btnUsuarios" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Usuários" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExtra" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="btnRelatorios" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #127369;" text="Relatórios" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="btnCarregarServico3" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #127369;" text="Carregar" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="btnCarregarServico4" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #127369;" text="Carregar" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="btnCarregarServico5" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: #127369;" text="Carregar" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Exame/Serviço">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="988.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="8.0" minHeight="5.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button fx:id="btnCarregarServico" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Carregar">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExtra" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="btnLimparServico" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Limpar">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesLimpar" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="btnDeletarServico" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Deletar">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExcluir" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label maxHeight="150.0" maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Nome do serviço" />
+                                    <ComboBox fx:id="cmbServico" maxWidth="250.0" prefWidth="150.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label fx:id="lblErroDeletarTipoServico" maxHeight="150.0" prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label maxHeight="300.0" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" styleClass="lblPequeno" text="Valor do serviço" />
+                                    <TextField fx:id="txtValorServico" alignment="CENTER" maxWidth="183.0" prefHeight="26.0" prefWidth="183.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label maxHeight="300.0" prefWidth="300.0" />
+                                    <Button fx:id="btnSalvarServico" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Salvar" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="15.0" right="15.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Nome do serviço" />
+                                    <TextField fx:id="txtServico" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label fx:id="lblErroServico" maxHeight="300.0" prefWidth="300.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Descriçao do serviço" />
+                                    <TextArea fx:id="txtDescricaoServico" maxHeight="150.0" maxWidth="300.0" prefHeight="200.0" prefWidth="250.0" wrapText="true" />
+                                    <Label fx:id="lblErroServico1" maxHeight="300.0" prefWidth="300.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="300.0" prefWidth="300.0" text="Serviço" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
+                                 <children>
+                                    <Button fx:id="btnCarregarExame" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Carregar">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExtra" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="btnLimparExame" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Limpar">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesLimpar" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="btnDeletarExame" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Deletar">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExcluir" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                 <children>
+                                    <Label maxHeight="150.0" maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Nome do exame" />
+                                    <ComboBox fx:id="cmbExame" maxWidth="250.0" prefWidth="150.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label fx:id="lblErroDeletarTipoExame" maxHeight="150.0" prefWidth="150.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label maxHeight="250.0" maxWidth="160.0" minWidth="180.0" prefWidth="250.0" styleClass="lblPequeno" text="Valor do exame" />
+                                    <TextField fx:id="txtValorExame" alignment="CENTER" maxWidth="183.0" prefHeight="26.0" prefWidth="183.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label maxHeight="300.0" prefWidth="300.0" />
+                                    <Button fx:id="btnSalvarExame" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Salvar" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets left="15.0" right="15.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Nome do exame" />
+                                    <TextField fx:id="txtExame" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label fx:id="lblErroExame" maxHeight="300.0" prefWidth="300.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Descriçao do exame" />
+                                    <TextArea fx:id="txtDescricaoExame" maxHeight="150.0" maxWidth="300.0" prefHeight="250.0" prefWidth="250.0" wrapText="true" />
+                                    <Label fx:id="lblErroExame1" maxHeight="300.0" prefWidth="300.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="300.0" prefWidth="300.0" text="Exame" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Espécie/raça">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="186.0" layoutY="128.0" prefHeight="988.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="8.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
+                                 <children>
+                                    <Button fx:id="btnDeletarEspecie" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Deletar">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExcluir" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                                 <children>
+                                    <Label maxHeight="150.0" maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Espécie" />
+                                    <ComboBox fx:id="cmbEspecie" maxWidth="250.0" prefWidth="150.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <Label fx:id="lblErroDeletarEspecie" maxHeight="150.0" prefWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Button fx:id="btnSalvarEspecie" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Salvar" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Espécie" />
+                                    <TextField fx:id="txtEspecie" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label fx:id="lblErroEspecie" maxHeight="300.0" prefWidth="300.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button fx:id="btnDeletarRaca" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Deletar">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesExcluir" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lblErroDeletarRacaEspecie" maxHeight="150.0" prefWidth="150.0" />
+                                    <Label maxHeight="150.0" maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Espécie" />
+                                    <ComboBox fx:id="cmbEspecieRaca" maxHeight="150.0" maxWidth="250.0" prefWidth="150.0" promptText="Selecione" />
+                                    <Label maxHeight="150.0" maxWidth="250.0" prefWidth="150.0" styleClass="lblPequeno" text="Raça">
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <ComboBox fx:id="cmbRaca" maxWidth="250.0" prefWidth="150.0" promptText="Selecione">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button fx:id="btnSalvarRaca" maxWidth="150.0" mnemonicParsing="false" prefWidth="150.0" text="Salvar" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lblErroRacaEspecie" maxHeight="300.0" prefWidth="300.0" />
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Selecione a espécie" />
+                                    <ComboBox fx:id="cmbInserirEspecieRaca" maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" promptText="Selecione" />
+                                    <Label maxHeight="300.0" maxWidth="300.0" prefWidth="300.0" styleClass="lblPequeno" text="Raça">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="txtRaca" alignment="CENTER" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="300.0" prefWidth="300.0" text="Raça" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="106.0" prefWidth="199.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="300.0" prefWidth="300.0" text="Espécie" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Separator prefWidth="200.0" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

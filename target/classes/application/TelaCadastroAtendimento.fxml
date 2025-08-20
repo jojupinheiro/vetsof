@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<!--<?import view.utils.MaskTextField?>-->
+
+<SplitPane dividerPositions="0.1966887417218543" minHeight="500.0" minWidth="1000.0" prefHeight="693.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TelaCadastroAtendimentoController">
+  <items>
+      <AnchorPane maxWidth="260.0" minHeight="0.0" minWidth="260.0" prefHeight="898.0" prefWidth="300.0" styleClass="fundo2">
+         <children>
+            <VBox alignment="CENTER" maxWidth="409.0" minWidth="239.0" prefHeight="834.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="206.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logo_texto-brancoxcf.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="lblLabelProtocolo" text="Protocolo: " textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblProtocolo" text=" " textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </HBox>
+                  <Button fx:id="btnExcluir" mnemonicParsing="false" prefHeight="32.0" prefWidth="150.0" text="Excluir">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="botoesExcluir" />
+                        <String fx:value="botoesPadrao" />
+                     </styleClass>
+                  </Button>
+                  <VBox alignment="CENTER" prefHeight="99.0" prefWidth="349.0">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="btnPrescricao" mnemonicParsing="false" prefHeight="32.0" prefWidth="150.0" text="Gerar prescrição">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="botoesPadrao" />
+                              <String fx:value="botoesExtra" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <TabPane prefHeight="200.0" prefWidth="200.0" styleClass="fundo1" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabDadosAtendimento" text="Dados do atendimento">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="9.0" prefHeight="867.0" prefWidth="1197.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="320.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="312.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="311.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="321.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="99.0" prefWidth="349.0">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Tutor*" />
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbTutor" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnAdicionarTutor" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroTutor" textFill="RED" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Clínica*" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbClinica" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnAdicionarClinica" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroClinica" textFill="RED" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Pet*" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbPet" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnAdicionarPet" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroPet" textFill="RED" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Observações" />
+                                    <TextArea fx:id="txtObservacao" prefHeight="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Data de atendimento*">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <DatePicker fx:id="dpDataAtendimento" prefWidth="200.0" promptText="dd/mm/aaaa" />
+                                    <Label fx:id="lblErroDataAtendimento" textFill="RED">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="99.0" prefWidth="349.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Diagnóstico" />
+                                    <TextField fx:id="txtDiagnostico" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-radius: 5; -fx-alignment: CENTER;">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="5.0">
+                                       <children>
+                                          <Button fx:id="btnSalvar" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Salvar" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <styleClass>
+                                                <String fx:value="botoesPadrao" />
+                                                <String fx:value="botoesSalvar" />
+                                             </styleClass>
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/salvar.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                          <Button fx:id="btnLimpar" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Limpar">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <styleClass>
+                                                <String fx:value="botoesPadrao" />
+                                                <String fx:value="botoesLimpar" />
+                                             </styleClass>
+                                             <graphic>
+                                                <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/excluir.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="btnSalvarEPrescricao" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="285.0" text="Salvar e gerar prescrição" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/arquivo.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="btnCancelar" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Sair">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesCancelar" />
+                                       </styleClass>
+                                       <graphic>
+                                          <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/sair.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="792.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Anamnese" />
+                                    <TextArea fx:id="txtAnamnese" prefHeight="200.0" prefWidth="300.0" wrapText="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Veterinário*" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbVeterinario" disable="true" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnAdicionarVeterinario" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroVeterinario" textFill="RED" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Horário de atendimento (hh:mm)*">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <TextField fx:id="txtHorarioAtendimento" alignment="CENTER" maxWidth="100.0" promptText="00:00" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                          <Button fx:id="btnAtualizarHorario" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/refresh.png" />
+                                                   </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Label fx:id="lblErroHorario" textFill="RED">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" styleClass="lblPequeno" text="Valor total*" textAlignment="CENTER" />
+                                    <TextField fx:id="txtValorTotal" alignment="CENTER" maxWidth="150.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label fx:id="lblErroValorTotal" textFill="RED">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="tabExames" text="Exames/Serviços realizados">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="5.0" minHeight="10.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Valor do exame" textAlignment="CENTER" />
+                                    <TextField fx:id="txtValorExame" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Button fx:id="btnCadastrarExame" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style=": #06472;" text="Cadastrar" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Valor do serviço" textAlignment="CENTER" />
+                                    <TextField fx:id="txtValorServico" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                    <Label alignment="CENTER" layoutX="31.0" layoutY="70.0" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Quantidade" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Spinner fx:id="spnQuantidadeServico" maxWidth="-Infinity" prefWidth="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Observações do serviço" />
+                                    <TextArea fx:id="txtObservacaoServico" maxHeight="100.0" prefHeight="100.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Exame" />
+                                    <HBox prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbExame" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnInserirExame" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroTipoVacina1" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblErroExame" textFill="RED" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Exames cadastrados" />
+                                    <ListView fx:id="listViewExames" prefHeight="90.0" prefWidth="300.0" />
+                                    <HBox alignment="CENTER" prefHeight="30.0" spacing="90.0">
+                                       <children>
+                                          <Button fx:id="btnRemoverExame" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" mnemonicParsing="false" prefWidth="125.0" styleClass="botoesTransparentes" text="Remover exame" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font></Button>
+                                          <Button fx:id="btnLimparExame" alignment="CENTER" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" styleClass="botoesTransparentes" text="Limpar">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font></Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Serviço" />
+                                    <HBox prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbServico" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnInserirServico" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroTipoVacina11" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblErroServico" textFill="RED" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Observações do exame" />
+                                    <TextArea fx:id="txtObservacaoExame" maxHeight="100.0" prefHeight="100.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Serviços cadastrados" />
+                                    <ListView fx:id="listViewServicos" prefHeight="90.0" prefWidth="300.0" />
+                                    <HBox alignment="CENTER" prefHeight="30.0" spacing="85.0">
+                                       <children>
+                                          <Button fx:id="btnRemoverServico" alignment="CENTER" layoutX="245.0" layoutY="10.0" minHeight="30.0" mnemonicParsing="false" prefWidth="135.0" styleClass="botoesTransparentes" text="Remover serviço" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font></Button>
+                                          <Button fx:id="btnLimparServico" alignment="CENTER" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" styleClass="botoesTransparentes" text="Limpar">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font></Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" layoutX="10.0" layoutY="177.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Resultado(s) do exame" />
+                                    <TextArea fx:id="txtResultadoExame" prefHeight="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <Separator prefWidth="200.0" GridPane.rowIndex="2" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Exames">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Serviços">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <children>
+                                    <Button fx:id="btnCadastrarServico" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style=": #06472;" text="Cadastrar" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab fx:id="tabVacinas" text="Vacinas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="867.0" prefWidth="1197.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="281.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="323.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="160.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="322.0" minHeight="10.0" prefHeight="322.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Categoria" />
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbCategoriaVacina" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnInserirTipoVacina" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="2.0" top="2.0" />
+                                       </padding>
+                                    </HBox>
+                                    <Label fx:id="lblErroTipoVacina" textFill="RED">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="19.0" prefWidth="264.0" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Button fx:id="btnCadastrarVacina" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Cadastrar" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="botoesPadrao" />
+                                          <String fx:value="botoesSalvar" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="15.0" left="10.0" />
+                                 </padding>
+                              </HBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Vacinas cadastradas" />
+                                    <ListView fx:id="listViewVacinas" prefHeight="150.0" prefWidth="300.0" />
+                                    <HBox alignment="CENTER" prefHeight="35.0" spacing="100.0">
+                                       <children>
+                                          <Button fx:id="btnRemoverVacina" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" styleClass="botoesTransparentes" text="Remover vacina">
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font></Button>
+                                          <Button fx:id="btnLimparVacina" alignment="CENTER" minWidth="72.0" mnemonicParsing="false" prefHeight="30.0" styleClass="botoesTransparentes" text="Limpar">
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font></Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Label styleClass="lblPequeno" text="Dose atual" />
+                                          <Spinner fx:id="spnDoseAtual" editable="true" maxWidth="80.0" prefWidth="80.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Label styleClass="lblPequeno" text="Doses totais" />
+                                          <Spinner fx:id="spnDosesTotais" editable="true" maxWidth="80.0" prefWidth="80.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Vacina" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbVacina" disable="true" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnInserirNomeVacina" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Label fx:id="lblErroVacina" textFill="RED" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="110.0" spacing="10.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Status da vacina" />
+                                    <RadioButton fx:id="rbAplicada" mnemonicParsing="false" text="Aplicada">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="aplicada" />
+                                       </toggleGroup>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rbProgramada" mnemonicParsing="false" text="Programada" toggleGroup="$aplicada">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor></RadioButton>
+                                    <Label fx:id="lblErroStatusVacina" textFill="RED" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="130.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label fx:id="lblProgramadaOuProximaDose" styleClass="lblPequeno" text="Data da vacina" />
+                                    <DatePicker fx:id="dpDtVacina" prefWidth="200.0" promptText="dd/mm/aaaa" />
+                                    <HBox alignment="TOP_CENTER" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="lblErroDtVacina" textFill="RED" />
+                                          <Label fx:id="lblErroDtVacinaFutura" layoutX="10.0" layoutY="10.0" textFill="RED" />
+                                          <Label fx:id="lblErroDtVacinaPassada" layoutX="10.0" layoutY="10.0" textFill="RED" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="220.0" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Observaçao da vacina" />
+                                    <TextArea fx:id="txtObservacaoVacina" maxHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label alignment="CENTER" styleClass="lblPequeno" text="Valor da vacina" textAlignment="CENTER" />
+                                    <TextField fx:id="txtValorVacina" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lblProximaDose" styleClass="lblPequeno" text="Terá próxima dose ou reforço?">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox prefHeight="20.0" prefWidth="200.0" spacing="15.0">
+                                       <children>
+                                          <RadioButton fx:id="rbProximaDoseSim" mnemonicParsing="false" text="Sim">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="proximaDose" />
+                                             </toggleGroup>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </RadioButton>
+                                          <RadioButton fx:id="rbProximaDoseNao" mnemonicParsing="false" selected="true" text="Não" toggleGroup="$proximaDose">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></RadioButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox fx:id="boxDataReforco" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                       <children>
+                                          <ToggleButton fx:id="btn21Dias" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="70.0" text="Em 21 dias" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="tempoAteProximaDose" />
+                                             </toggleGroup>
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="btn30Dias" mnemonicParsing="false" prefWidth="70.0" text="Em 30 dias" textAlignment="CENTER" textFill="WHITE" toggleGroup="$tempoAteProximaDose" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="btn45Dias" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="70.0" text="Em 45 dias" textAlignment="CENTER" textFill="WHITE" toggleGroup="$tempoAteProximaDose" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="btn6Meses" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="70.0" text="Em 6 meses" textAlignment="CENTER" textFill="WHITE" toggleGroup="$tempoAteProximaDose" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="btn1Ano" layoutX="95.0" layoutY="10.0" mnemonicParsing="false" prefWidth="70.0" text="Em 1 ano" textAlignment="CENTER" textFill="WHITE" toggleGroup="$tempoAteProximaDose" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ToggleButton>
+                                          <Label text="OU">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <DatePicker fx:id="dpDtReforco" prefWidth="200.0" promptText="dd/mm/aaaa" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+  </items>
+</SplitPane>

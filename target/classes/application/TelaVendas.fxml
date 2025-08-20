@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1000.0" styleClass="fundo1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TelaVendasController">
+   <children>
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="138.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="210.0" minHeight="10.0" prefHeight="172.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+               <children>
+                  <TableView fx:id="tblVenda" style="-fx-background-radius: 5;">
+                    <columns>
+                      <TableColumn fx:id="tableColumnCodigo" maxWidth="60.0" minWidth="30.0" prefWidth="60.0" text="Código" />
+                      <TableColumn fx:id="tableColumnProduto" minWidth="300.0" prefWidth="350.0" text="Produto" />
+                        <TableColumn fx:id="tableColumnQtd" maxWidth="100.0" minWidth="40.0" prefWidth="60.0" text="Qtd" />
+                        <TableColumn fx:id="tableColumnPreco" maxWidth="150.0" minWidth="60.0" prefWidth="100.0" text="Preço" />
+                        <TableColumn fx:id="tableColumnSubtotal" maxWidth="150.0" minWidth="60.0" prefWidth="100.0" text="Subtotal" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <children>
+                  <Button fx:id="btnFinalizar" mnemonicParsing="false" prefHeight="32.0" prefWidth="150.0" text="Finalizar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="botoesSalvar" />
+                        <String fx:value="botoesPadrao" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox id="labelVendas" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="15.0" top="10.0" />
+               </GridPane.margin>
+               <children>
+                  <Label fx:id="lblNomeProduto" text="lblNomeProduto">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblValorProduto" text="lblValorProduto">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Cliente" />
+                  <TextField fx:id="txtCliente" />
+                  <Label layoutX="10.0" layoutY="10.0" text="CPF/CNPJ">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="txtCpf" layoutX="10.0" layoutY="28.0" />
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 2 0 2 2; -fx-border-color: black; -fx-border-radius: 5 0 0 5;" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Código do produto" />
+                  <TextField fx:id="txtCodigo" alignment="CENTER" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2 0 2 0;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label layoutX="20.0" layoutY="22.0" text="Categoria">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <SearchableComboBox fx:id="scmbCategoria" layoutX="20.0" layoutY="40.0" />
+                  <Label layoutX="20.0" layoutY="27.0" text="Produto">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <SearchableComboBox fx:id="scmbProduto" layoutX="20.0" layoutY="45.0" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2 2 2 0; -fx-border-radius: 0 5 5 0;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="Quantidade" />
+                  <TextField fx:id="txtQuantidade" alignment="CENTER" maxWidth="-Infinity" prefWidth="80.0" />
+                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+                     <children>
+                        <Button fx:id="btnAdicionar" minHeight="32.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Adicionar">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="botoesSalvar" />
+                              <String fx:value="botoesPadrao" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Total: ">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotal" layoutX="10.0" layoutY="10.0" text="lblTotal">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Label text="Forma de pagamento" />
+                  <ComboBox fx:id="cmbFormaPagamento" prefWidth="200.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
+               <children>
+                  <Label text="Desconto" />
+                  <HBox prefHeight="0.0" prefWidth="0.0">
+                     <children>
+                        <Label text="R$">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtDescontoAbs" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <Label text="  ou  " />
+                        <TextField fx:id="txtDescontoPercent" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <Label layoutX="10.0" layoutY="10.0" text="\%">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <children>
+                  <Label text="Data" />
+                  <Label fx:id="lblData" text="lblData">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblHora" layoutX="20.0" layoutY="28.0" text="lblHora">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <Label fx:id="lblParcelas" text="Número de parcelas" />
+                  <Spinner fx:id="spnNumeroParcelas" prefWidth="70.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <children>
+                  <Label text="Vendedor" />
+                  <Label fx:id="lblVendedor" text="lblVendedor">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+               <children>
+                  <Button fx:id="btnRemover" mnemonicParsing="false" prefHeight="32.0" prefWidth="150.0" text="Remover">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <styleClass>
+                        <String fx:value="botoesExcluir" />
+                        <String fx:value="botoesPadrao" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

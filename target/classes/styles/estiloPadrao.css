@@ -1,0 +1,258 @@
+*{
+    -cor1: #127369;
+    -cor2: #10403B;
+    -cor3: #8AA6A3;
+    -cor4: #4C5958;
+    -cor5: #BFBFBF;
+    -cor6: #abc4c2;
+    
+    -sombra-escura: #5a5c61;
+    -sombra-cor4: #2f3033;
+    -cor-padrao-botoes-claros: black;
+    -cor-padrao-botoes-escuros: white;
+    -cor-btnExtra: orange;
+    -cor-btnExcluir: #ED9898;
+    -cor-btnSalvar: #064721;
+    -cor-btnLimpar: #adcf32;
+    -cor-btnCancelar: #ED9898;
+}
+
+.tab,
+.date-picker,
+.button,
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button,
+.combo-box:hover,
+.radio-button,
+.check-box{
+    -fx-cursor: hand;
+}
+
+.combo-box{
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: gray; 
+}
+
+.combo-box .text-field{
+    -fx-background-radius: 20;
+}
+
+.toggle-button{
+    -fx-cursor: hand;
+    -fx-background-radius: 10;
+    -fx-effect: innershadow(three-pass-box, -sombra-cor4, 6, 0.05, 3, 3);
+    -fx-background-color: -cor4;
+}
+
+
+.botoesTelaListas{
+    -fx-background-color:  -cor4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 15;
+    -fx-font-weight: bolder;
+    -fx-font-color: -cor-padrao-botoes-escuros;
+    -fx-effect: innershadow(three-pass-box, grey, 6, 0.05, 3, 3);
+    -fx-border-width: 0px;
+}
+
+.botoesTelaListas:hover{
+    -fx-background-color:  -cor4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 15.5;
+    -fx-font-weight: bolder;
+    -fx-font-color: -cor-padrao-botoes-escuros;
+    -fx-effect: innershadow(three-pass-box, grey, 6, 0.05, 3, 3);
+}
+
+.botoesTelaListas:pressed{
+    -fx-background-color:  -cor4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 14;
+    -fx-font-weight: bolder;
+    -fx-font-color: -cor-padrao-botoes-escuros;
+    -fx-effect: innershadow(three-pass-box, #373638, 6, 0.05, 3, 3);
+}
+
+.botoesPadrao{
+    -fx-background-radius: 50;
+    -fx-effect: innershadow(three-pass-box, -sombra-escura, 6, 0.05, 3, 3);
+}
+
+.botoesPadrao:hover{
+    -fx-font-size: 14px;
+}
+
+.botoesPadrao:pressed{
+    -fx-font-size: 12px;
+    -fx-effect: innershadow(three-pass-box, white, 6, 0.05, 3, 3);
+}
+
+.botoesCancelar{
+    -fx-background-color: -cor-btnCancelar;
+    -fx-font-weight: bolder;
+}
+
+.botoesLimpar{
+    -fx-background-color: -cor-btnLimpar;
+    -fx-font-weight: bolder;
+}
+
+.botoesSalvar{
+    -fx-background-color: -cor-btnSalvar;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.botoesExcluir{
+    -fx-background-color: -cor-btnExcluir;
+    -fx-font-weight: bolder;
+}
+
+.botoesExtra{
+    -fx-background-color: -cor-btnExtra;
+    -fx-font-weight: bolder;
+    -fx-text-fill: -cor-padrao-botoes-claros;
+}
+
+.botoesInserir{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.botoesTransparentes{
+    -fx-border-radius: 50;
+    -fx-border-color: -cor-padrao-botoes-claros;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-font-weight: normal;
+    -fx-text-fill: -cor-padrao-botoes-claros;
+}
+
+.botoesTransparentes:hover{
+    -fx-font-weight: bold;
+}
+
+.fundo1{
+    -fx-background-color:  -cor3;
+}
+
+.fundo2{
+    -fx-background-color:  -cor4;
+}
+
+.fundo3{
+    -fx-background-color:  -cor1;
+}
+
+.fundo4{
+    -fx-background-color:  -cor5;
+}
+
+.fundo5{
+    -fx-background-color: -cor6;
+}
+
+.anchor-pane{
+    -fx-border-color: black;
+    -fx-border-width: 0 1 1 1;
+}
+
+.lblPequeno{
+    -fx-font-weight: bolder;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell:hover {
+    -fx-font-weight: bolder;
+}
+
+.table-column{
+    -fx-alignment: center;
+}
+
+.tab:selected{
+    -fx-background-color:  -cor3;
+    -fx-font-weight: bolder;
+    -fx-font-size: 14;
+    -fx-border-width: 1px 1px 0px 1px !important;
+}
+.tab{
+    -fx-background-color:  -cor3;
+    -fx-font-size: 13;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: -cor3; 
+
+}
+
+.tab-pane .tab-header-area .tab {
+    -fx-border-color: #000000; 
+    -fx-border-width: 1px ;  
+    -fx-border-style: solid;  
+    -fx-border-radius: 10px 10px 0px 0px;
+    -fx-spacing: 10px;
+}
+
+.subtitulo{
+    -fx-font-weight: bolder;
+    -fx-font-size: 15;
+}
+
+.titulo{
+    -fx-font-weight: bolder;
+    -fx-font-size: 20;
+}
+
+ /*JANELA DE ALERTA*/
+ 
+.dialog-pane {
+    -fx-background-color: -cor3;
+}
+
+/* Altera a cor do cabeçalho (título) */
+.dialog-pane .header-panel {
+    -fx-background-color: -cor1;
+}
+
+/* Altera a cor do texto do cabeçalho */
+.dialog-pane .header-panel .label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Personaliza os botões */
+.dialog-pane .button {
+    -fx-background-color: -cor4;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .button:hover {
+    -fx-font-size: 15px;
+}
+
+.hbox-item{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: dotted;
+    -fx-border-color: black;
+    -fx-padding: 0px 10px 5px 10px;
+    -fx-pref-width: 100%;
+    -fx-alignment: center-left;
+}
+
+.lblDiaria{
+    -fx-font-size: 14px;
+    -fx-font-weight: bolder;
+}
+
+#labelVendas{
+    -fx-background-color: #94b3af;
+    -fx-border-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-margin: 10px 0px 0px 0px;
+}

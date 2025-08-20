@@ -1,0 +1,218 @@
+*{
+    -cor1: #5268a1;
+    -cor2: #8293bd;
+    -cor3: #5a76f2;
+    -cor4: #464d61;
+    -cor5: #BFBFBF;
+    
+    -sombra-escura: #5a5c61;
+    -sombra-cor4: #2f3033;
+    -cor-padrao-botoes-claros: black;
+    -cor-padrao-botoes-escuros: white;
+    -cor-btnExtra: #759dc7;
+    -cor-btnExcluir: #a25ea8;
+    -cor-btnSalvar: #1e2a3b;
+    -cor-btnLimpar: #60718a;
+    -cor-btnCancelar: #a25ea8;
+}
+
+.tab,
+.date-picker,
+.button,
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button,
+.combo-box:hover,
+.radio-button,
+.check-box{
+    -fx-cursor: hand;
+}
+
+.combo-box{
+    -fx-background-radius: 20;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: gray; 
+}
+
+.combo-box .text-field{
+    -fx-background-radius: 20;
+}
+
+.toggle-button{
+    -fx-cursor: hand;
+    -fx-background-radius: 10;
+    -fx-effect: innershadow(three-pass-box, -sombra-cor4, 6, 0.05, 3, 3);
+    -fx-background-color: -cor4;
+}
+
+.botoesTelaListas{
+    -fx-background-color:  -cor4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 15;
+    -fx-font-weight: bolder;
+    -fx-font-color: -cor-padrao-botoes-escuros;
+    -fx-border-width: 0px;
+    -fx-effect: innershadow(three-pass-box, grey, 6, 0.05, 3, 3);
+}
+
+.botoesTelaListas:hover{
+    -fx-background-color:  -cor4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 15.5;
+    -fx-font-weight: bolder;
+    -fx-font-color: -cor-padrao-botoes-escuros;
+    -fx-effect: innershadow(three-pass-box, grey, 6, 0.05, 3, 3);
+}
+
+.botoesTelaListas:pressed{
+    -fx-background-color:  -cor4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 14;
+    -fx-font-weight: bolder;
+    -fx-font-color: -cor-padrao-botoes-escuros;
+    -fx-effect: innershadow(three-pass-box, #373638, 6, 0.05, 3, 3);
+}
+
+.botoesPadrao{
+    -fx-background-radius: 50;
+    -fx-effect: innershadow(three-pass-box, -sombra-escura, 6, 0.05, 3, 3);
+}
+
+.botoesPadrao:hover{
+    -fx-font-size: 14px;
+}
+
+.botoesPadrao:pressed{
+    -fx-font-size: 12px;
+    -fx-effect: innershadow(three-pass-box, white, 6, 0.05, 3, 3);
+}
+
+.botoesCancelar{
+    -fx-background-color: -cor-btnCancelar;
+    -fx-font-weight: bolder;
+}
+
+.botoesLimpar{
+    -fx-background-color: -cor-btnLimpar;
+    -fx-font-weight: bolder;
+}
+
+.botoesSalvar{
+    -fx-background-color: -cor-btnSalvar;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.botoesExcluir{
+    -fx-background-color: -cor-btnExcluir;
+    -fx-font-weight: bolder;
+}
+
+.botoesExtra{
+    -fx-background-color: -cor-btnExtra;
+    -fx-font-weight: bolder;
+    -fx-text-fill: -cor-padrao-botoes-claros;
+}
+
+.botoesInserir{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.botoesTransparentes{
+    -fx-border-radius: 50;
+    -fx-border-color: -cor-padrao-botoes-claros;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-font-weight: normal;
+    -fx-text-fill: -cor-padrao-botoes-claros;
+}
+
+.botoesTransparentes:hover{
+    -fx-font-weight: bolder;
+}
+
+.fundo1{
+    -fx-background-color:  -cor3;
+}
+
+.fundo2{
+    -fx-background-color:  -cor4;
+}
+
+.fundo3{
+    -fx-background-color:  -cor1;
+}
+
+.fundo4{
+    -fx-background-color:  -cor5;
+}
+
+.lblPequeno{
+    -fx-font-weight: bolder;
+    -fx-font-size: 14px;
+}
+
+.table-row-cell:hover {
+    -fx-font-weight: bolder;
+}
+
+.table-column{
+    -fx-alignment: center;
+}
+
+.tab:selected{
+    -fx-background-color:  -cor3;
+    -fx-font-weight: bolder;
+    -fx-font-size: 14;
+    -fx-border-width: 1px 1px 0px 1px !important;
+}
+.tab{
+    -fx-background-color:  -cor3;
+    -fx-font-size: 13;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: -cor3; 
+
+}
+
+.tab-pane .tab-header-area .tab {
+    -fx-border-color: #000000; 
+    -fx-border-width: 1px ;  
+    -fx-border-style: solid;  
+    -fx-border-radius: 10px 10px 0px 0px;
+    -fx-spacing: 10px;
+}
+
+.subtitulo{
+    -fx-font-weight: bolder;
+    -fx-font-size: 15;
+}
+
+.titulo{
+    -fx-font-weight: bolder;
+    -fx-font-size: 20;
+}
+
+.hbox-item{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: dotted;
+    -fx-border-color: black;
+    -fx-padding: 0px 10px 5px 10px;
+    -fx-pref-width: 100%;
+    -fx-alignment: center-left;
+}
+
+.lblDiaria{
+    -fx-font-size: 14px;
+    -fx-font-weight: bolder;
+}
+
+#labelVendas{
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+}

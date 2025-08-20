@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="325.0" prefWidth="700.0" styleClass="fundo1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerSubTelas.TelaInserirNomeVacinaController">
+   <children>
+      <HBox alignment="CENTER" layoutX="68.0" layoutY="25.0" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="300.0">
+               <children>
+                  <Label layoutX="30.0" layoutY="78.0" styleClass="lblPequeno" text="Categoria" />
+                  <ComboBox fx:id="cmbCategoriaVacina" prefWidth="260.0" promptText="Selecione" />
+                  <Label styleClass="lblPequeno" text="Nome">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Label>
+                  <TextField fx:id="txtVacina" prefWidth="260.0" />
+                  <Label layoutX="30.0" layoutY="89.0" styleClass="lblPequeno" text="Laboratório">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="txtLaboratorio" layoutX="30.0" layoutY="107.0" prefWidth="260.0" />
+                  <Label layoutX="30.0" layoutY="179.0" styleClass="lblPequeno" text="Valor">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="txtValor" layoutX="30.0" layoutY="215.0" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="80.0" />
+                  <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="btnInserir" mnemonicParsing="false" text="Inserir">
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="botoesPadrao" />
+                              <String fx:value="botoesSalvar" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnExcluir" layoutX="111.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-radius: 50;" text="Excluir" visible="false">
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="400.0">
+               <children>
+                  <Label styleClass="lblPequeno" text="Vacinas existentes na categoria" />
+                  <ListView fx:id="listViewVacinas" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

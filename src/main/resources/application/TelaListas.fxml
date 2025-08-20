@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-border-color: black; -fx-border-width: 0 1 1 1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TelaListasController">
+   <top>
+      <AnchorPane maxHeight="-Infinity" prefHeight="27.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Cadastros">
+                     <items>
+                        <MenuItem fx:id="miCadastrarAtendimento" mnemonicParsing="false" text="Atendimentos" />
+                        <MenuItem fx:id="miCadastrarClinica" mnemonicParsing="false" text="Clínicas" />
+                        <MenuItem fx:id="miCadastrarInternado" mnemonicParsing="false" text="Internados" />
+                        <MenuItem fx:id="miCadastrarPet" mnemonicParsing="false" text="Pets" />
+                        <MenuItem fx:id="miCadastrarPrescricao" mnemonicParsing="false" text="Prescrições" />
+                        <MenuItem fx:id="miCadastrarTutor" mnemonicParsing="false" text="Tutores" />
+                        <MenuItem fx:id="miCadastrarUsuario" mnemonicParsing="false" text="Usuários" />
+                        <MenuItem fx:id="miCadastrarVeterinario" mnemonicParsing="false" text="Veterinários" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Listas">
+                     <items>
+                        <MenuItem fx:id="miVerAtendimento" mnemonicParsing="false" text="Atendimentos" />
+                        <MenuItem fx:id="miVerClinica" mnemonicParsing="false" text="Clínicas" />
+                        <MenuItem fx:id="miVerPet" mnemonicParsing="false" text="Pets" />
+                        <MenuItem fx:id="miVerPrescricao" mnemonicParsing="false" text="Prescrições" />
+                        <MenuItem fx:id="miVerTutor" mnemonicParsing="false" text="Tutores" />
+                        <MenuItem fx:id="miVerVeterinario" mnemonicParsing="false" text="Veterinários" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Funcionalidades">
+                     <items>
+                        <MenuItem fx:id="miVerSalaEspera" mnemonicParsing="false" text="Sala de Espera" />
+                        <MenuItem fx:id="miVerSalaInternacao" mnemonicParsing="false" text="Sala de Internação" />
+                        <MenuItem fx:id="miEstoque" mnemonicParsing="false" text="Estoque" />
+                        <MenuItem fx:id="miVendas" mnemonicParsing="false" text="Vendas" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Calculadoras">
+                     <items>
+                        <MenuItem fx:id="miReposicaoHidrica" mnemonicParsing="false" text="Reposição hídrica/calórica" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuPropriedades" mnemonicParsing="false" text="Configurações" visible="false">
+                     <items>
+                        <MenuItem fx:id="miAdministrador" mnemonicParsing="false" text="Tela do Administrador" />
+                        <MenuItem fx:id="miPreferencias" mnemonicParsing="false" text="Preferências" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="162.0" styleClass="fundo1" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="773.0" prefWidth="159.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="77.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logo_texto-brancoxcf.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Button fx:id="btnAtendimentos" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" styleClass="botoesTelaListas" text="Atendimentos" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnClinicas" layoutX="20.0" layoutY="127.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Clínicas" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnPets" layoutX="20.0" layoutY="197.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Pets" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnPrescricao" layoutX="20.0" layoutY="287.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Prescrições" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnTutores" layoutX="20.0" layoutY="267.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Tutores" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnVeterinarios" layoutX="20.0" layoutY="267.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Veterinários" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Separator prefWidth="200.0" />
+                  <Button fx:id="btnSalaEspera" layoutX="28.0" layoutY="497.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Sala de espera" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnInternacao" layoutX="28.0" layoutY="590.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Internação" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnEstoque" layoutX="28.0" layoutY="590.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Estoque" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btnVendas" layoutX="28.0" layoutY="630.0" minHeight="50.0" minWidth="135.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="botoesTelaListas" text="Vendas" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <GridPane styleClass="fundo1" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Bem vindo ao VetSof!">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                  </Label>
+                  <Label text="Escolha uma opção para iniciar">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

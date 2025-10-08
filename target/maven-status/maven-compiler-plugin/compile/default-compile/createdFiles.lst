@@ -206,6 +206,7 @@ controllerSubTelas/TelaInserirEspecieController.class
 controllerSubTelas/TelaInserirProdutoController.class
 application/TelaInternacaoController$1$1.class
 application/TelaCadastroVeterinarioController.class
+controllerSubTelas/TelaRelatorioGastosClinicasController.class
 controllerSubTelas/TelaCadastroExameRealizadoController$3.class
 model/dao/ClinicaDAO.class
 application/TelaListaUsuarioController$1.class

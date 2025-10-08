@@ -203,7 +203,7 @@ public class TelaCadastroTutorController implements Initializable {
                 if (cmbFaixaRenda.getSelectionModel().getSelectedIndex() != -1) {
                     tutor.setFaixaRenda(cmbFaixaRenda.getSelectionModel().getSelectedIndex());
                 }
-                if (txtTelefoneSec != null) {
+                if (txtTelefoneSec.getText() != null) {
                     tutor.setTelefoneAlternativoTutor(Utils.formataDados(txtTelefoneSec.getText()));
                 }
                 tutor.setObservacaoTutor(txtObservacao.getText().trim());

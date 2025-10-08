@@ -39,6 +39,7 @@
 /home/juliano/NetBeansProjects/VetSof/src/main/java/controllerSubTelas/TelaInserirRacaController.java
 /home/juliano/NetBeansProjects/VetSof/src/main/java/controllerSubTelas/TelaInserirServicoController.java
 /home/juliano/NetBeansProjects/VetSof/src/main/java/controllerSubTelas/TelaInserirTipoVacinaController.java
+/home/juliano/NetBeansProjects/VetSof/src/main/java/controllerSubTelas/TelaRelatorioGastosClinicasController.java
 /home/juliano/NetBeansProjects/VetSof/src/main/java/model/classes/Administrador.java
 /home/juliano/NetBeansProjects/VetSof/src/main/java/model/classes/Atendimento.java
 /home/juliano/NetBeansProjects/VetSof/src/main/java/model/classes/Clinica.java

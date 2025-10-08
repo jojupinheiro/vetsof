@@ -2,6 +2,7 @@ package model.classes;
 
 /**
  * Classe destinada a cadastrar as vacinas que serão applicadas nos animais.
+ * Refere-se à tabela nome_vac do banco de dados
  * @author João Juliano Pinheiro
  */
 public class ProdutoVacina {

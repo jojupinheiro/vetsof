@@ -702,6 +702,27 @@ public class MenuPrincipal {
         }
     }
     
+    public void gerarRelatorioGastosClinica(Window janela){
+        try {
+            URL url = getClass().getResource("TelaRelatorioGastosClinica.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setTitle("Relatório de despesas dass clínicas");
+            stage.setScene(scene);
+            scene.getStylesheets().add(TelaPreferenciasController.estilo);
+            stage.centerOnScreen();
+            stage.setMinWidth(1200);
+            stage.setMinHeight(800);
+            stage.initOwner(janela);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void inserirBairro(Window janela, Municipio municipio) {
         try {
             URL url = getClass().getResource("TelaInserirBairro.fxml");
@@ -1056,7 +1077,7 @@ public class MenuPrincipal {
             stage.setMinHeight(900);
             TelaListaPetController cont = loader.getController();
             cont.filtrarPorTutor(tutor);
-            janela.close();
+//            janela.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

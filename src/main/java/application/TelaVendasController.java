@@ -132,9 +132,11 @@ public class TelaVendasController implements Initializable {
         });
         
         txtDescontoPercent.setOnAction((t) -> {
-            aplicarDescontoPercentual();
             calcularValorTotal();
+            aplicarDescontoPercentual();
             imprimirValorTotal();
+            descontoPercentual = Float.parseFloat(txtDescontoPercent.getText());
+            desconto = 1- valorTotal * descontoPercentual;
         });
 
         ObservableList<FormaPagamento> listaObsFormaPagamento = FXCollections.observableArrayList(FormaPagamento.DINHEIRO, FormaPagamento.PIX,
@@ -285,11 +287,9 @@ public class TelaVendasController implements Initializable {
         for (Estoque p : produtosVendidos){
             valorTotal += (p.getQuantidadeConsumida() * p.getValorVenda());
         }
-        
-        aplicarDesconto();
     }
     
-    private void aplicarDesconto(){
+    private void aplicarDescontoAbsoluto(){
         desconto = txtDescontoAbs.getText().equals("") ? 0 : Float.parseFloat(txtDescontoAbs.getText());
         valorTotalComDesconto = valorTotal - desconto;
     }
@@ -347,52 +347,56 @@ public class TelaVendasController implements Initializable {
         imprimirValorTotal();
     }
     
-    private void finalizarVenda(){
+    private void finalizarVenda() {
         try {
-                ValidacaoException exc = new ValidacaoException("Erro validando!!");
-                
-                if (produtosVendidos.isEmpty()){
-                    Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("ERRO");
-                    al.setContentText("Insira ao menos um produto!");
-                    al.showAndWait();
-                    throw new RuntimeException("Deve ser inserido um produto na venda");
-                }
+            ValidacaoException exc = new ValidacaoException("Erro validando!!");
 
-                // Ao final de todos os testes de campos, é necessário verificar se existem erros.
-                // Se existire, aí sim eu disparo uma EXCEPTION que será capturada pelo CATCH
-                if (!exc.getErrors().isEmpty()) {
-                    throw exc;
-                }
-                
-                String cliente = txtCliente.getText();
-                String cpf = txtCpf.getText();
-                FormaPagamento formaPagamento = cmbFormaPagamento.getValue();
-                int numeroParcelas = spnNumeroParcelas.getValue();
-                
-                LocalDateTime dataHora = LocalDateTime.now();
-                Venda venda = new Venda(dataHora, produtosVendidos, valorTotalComDesconto, cliente, cpf, vendedor, formaPagamento, numeroParcelas);
-
-                if (new VendaService().salvarOuAtualizar(venda)) {
-
-                    // Deu certo
-                    limpaCampos();
-                } else {
-                    // Deu erro. O retorno do boolean veio false
-                    Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("ERRO");
-                    al.setContentText("Ocorreu um erro ao inserir!");
-                    al.showAndWait();
-                }
-
-            } catch (ValidacaoException e) {
-                System.out.println("Erro na validação");
-                setErrorMessages(e.getErrors());
-            } catch (RuntimeException rte){
-                System.out.println("ERRO: " + rte.getMessage());
+            if (produtosVendidos.isEmpty()) {
+                Alert al = new Alert(Alert.AlertType.ERROR);
+                al.setTitle("ERRO");
+                al.setContentText("Insira ao menos um produto!");
+                al.showAndWait();
+                throw new RuntimeException("Deve ser inserido um produto na venda");
             }
+            
+
+            // Ao final de todos os testes de campos, é necessário verificar se existem erros.
+            // Se existire, aí sim eu disparo uma EXCEPTION que será capturada pelo CATCH
+            if (!exc.getErrors().isEmpty()) {
+                throw exc;
+            }
+
+            String cliente = txtCliente.getText();
+            String cpf = txtCpf.getText();
+            FormaPagamento formaPagamento = cmbFormaPagamento.getValue();
+            int numeroParcelas = spnNumeroParcelas.getValue();
+
+            LocalDateTime dataHora = LocalDateTime.now();
+            Venda venda = new Venda(dataHora, produtosVendidos, valorTotalComDesconto, cliente, cpf, vendedor, formaPagamento, numeroParcelas);
+
+            if (new VendaService().salvarOuAtualizar(venda)) {
+                Alert al = new Alert(Alert.AlertType.INFORMATION);
+                al.setTitle("Sucesso");
+                al.setContentText("Venda concluída com sucesso");
+                al.showAndWait();
+                // Deu certo
+                limpaCampos();
+            } else {
+                // Deu erro. O retorno do boolean veio false
+                Alert al = new Alert(Alert.AlertType.ERROR);
+                al.setTitle("ERRO");
+                al.setContentText("Ocorreu um erro ao inserir!");
+                al.showAndWait();
+            }
+
+        } catch (ValidacaoException e) {
+            System.out.println("Erro na validação");
+            setErrorMessages(e.getErrors());
+        } catch (RuntimeException rte) {
+            System.out.println("ERRO: " + rte.getMessage());
+        }
     }
-    
+
     private void setErrorMessages(Map<String, String> errors) {
         // Pegar todos os campos de erro
         Set<String> campos = errors.keySet();
@@ -404,11 +408,21 @@ public class TelaVendasController implements Initializable {
         txtCliente.setText("");
         txtCpf.setText("");
         txtCodigo.setText("");
+        txtDescontoAbs.setText("");
+        txtDescontoPercent.setText("");
+        lblValorProduto.setText("");
+        lblTotal.setText("");
         scmbCategoria.getSelectionModel().select(null);
         scmbProduto.getSelectionModel().select(null);
         txtQuantidade.setText("");
         produtosVendidos.clear();
-        
+        lblParcelas.setVisible(false);
+        lblParcelas.setManaged(false);
+        spnNumeroParcelas.setVisible(false);
+        spnNumeroParcelas.setManaged(false);
+        produtosVendidos.clear();
+        cmbFormaPagamento.setValue(FormaPagamento.valueOf(TelaPreferenciasController.valoresPadrao.get(1).getValorPadraoString()));
+        atualizarTabela();
     }
 
 }

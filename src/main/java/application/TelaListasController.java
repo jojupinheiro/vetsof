@@ -44,6 +44,7 @@ public class TelaListasController extends MenuPrincipal implements Initializable
     @FXML    private MenuItem miEstoque;
     @FXML    private MenuItem miPreferencias;
     @FXML    private MenuItem miReposicaoHidrica;
+    @FXML    private MenuItem miRelatorios;
     @FXML    private MenuItem miVerAtendimento;
     @FXML    private MenuItem miVerClinica;
     @FXML    private MenuItem miVerPet;
@@ -107,6 +108,10 @@ public class TelaListasController extends MenuPrincipal implements Initializable
         
         miReposicaoHidrica.setOnAction((t) -> {
             calculadoraReposicaoHidrica(btnVeterinarios.getScene().getWindow());
+        });
+        
+        miRelatorios.setOnAction((t) -> {
+            
         });
 
         miVerAtendimento.setOnAction((t) -> {

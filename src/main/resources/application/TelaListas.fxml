@@ -54,6 +54,7 @@
                         <MenuItem fx:id="miVerSalaInternacao" mnemonicParsing="false" text="Sala de Internação" />
                         <MenuItem fx:id="miEstoque" mnemonicParsing="false" text="Estoque" />
                         <MenuItem fx:id="miVendas" mnemonicParsing="false" text="Vendas" />
+                        <MenuItem fx:id="miRelatorios" mnemonicParsing="false" text="Relatórios" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Calculadoras">

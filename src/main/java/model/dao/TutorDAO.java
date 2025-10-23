@@ -41,8 +41,8 @@ public class TutorDAO {
         try {
             String sql = "SELECT t.*, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor "
                     + "FROM tutor t "
-                    + "JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
-                    + "JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) ";
+                    + "LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) ";
 
             String filtroSql = "";
 

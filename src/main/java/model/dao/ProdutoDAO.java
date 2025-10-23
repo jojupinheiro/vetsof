@@ -30,7 +30,7 @@ public class ProdutoDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT p.*, cp.* FROM produto p " +
-                         "JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) " +
+                         "LEFT JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) " +
                          "ORDER BY p.nome_produto";
 
             String filtroSql = "";
@@ -100,7 +100,7 @@ public class ProdutoDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT p.*, cp.* FROM produto p " +
-                         "JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) " +
+                         "LEFT JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) " +
                          "WHERE cp.pk_idcategoria_prod = ? " +
                          "ORDER BY p.nome_produto";
 

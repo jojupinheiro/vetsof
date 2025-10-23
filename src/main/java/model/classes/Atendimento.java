@@ -141,14 +141,6 @@ public class Atendimento {
         this.valorTotal = valorTotal;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public LocalDate getDataAtendimento() {
         return dataAtendimento;
     }
@@ -189,10 +181,21 @@ public class Atendimento {
         Atendimento atendimento = new Atendimento(idAtendimento);
         return new VacinaService().getVacinasDoAtendimento(atendimento);
     }
+    
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     @Override
     public String toString() {
-        return "Atendimento{" + "idAtendimento=" + idAtendimento + ", pet=" + pet + ", clinica=" + clinica  + ", dataAtendimento=" + dataAtendimento + ", horarioAtendimento=" + horarioAtendimento + ", valorTotal=" + valorTotal + ", descricao=" + descricao + ", listaServico=" + listaServico + ", listaExames=" + listaExames + '}';
+        return "Atendimento{" + "idAtendimento=" + idAtendimento + ", pet=" + pet + ", clinica=" + 
+                clinica  + ", dataAtendimento=" + dataAtendimento + ", horarioAtendimento=" + 
+                horarioAtendimento + ", valorTotal=" + valorTotal + ", descricao=" + 
+                descricao + ", listaServico=" + listaServico + ", listaExames=" + listaExames + '}';
     }
     
     

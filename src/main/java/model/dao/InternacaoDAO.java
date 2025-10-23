@@ -278,15 +278,15 @@ public class InternacaoDAO {
             "bv.pk_idbairro AS id_bairro_veterinario, bv.nome_bairro AS nome_bairro_veterinario, " +
             "di.pk_iddiaria_internacao, di.numero_diaria_internacao, di.sinais_clinicos_diaria_internacao, di.notas_diaria_internacao, di.tratamento_diaria_internacao, di.data_diaria_internacao " +
             "FROM internado i " +
-            "JOIN pet ON i.fk_idpet_internado = pet.pk_idpet " +
-            "JOIN especie esp ON esp.pk_idespecie = pet.fk_idespecie_pet " +
-            "JOIN raca ON raca.pk_idraca = pet.fk_idraca_pet " +
-            "JOIN tutor t ON t.pk_idtutor = pet.fk_idtutor_pet " +
-            "JOIN municipio mt ON t.fk_idmunicipio_tutor = mt.pk_idmunicipio " +
-            "JOIN bairro bt ON t.fk_idbairro_tutor = bt.pk_idbairro " +
-            "JOIN veterinario v ON v.pk_idveterinario = i.fk_idveterinario_internado " +
-            "JOIN municipio mv ON v.fk_idmunicipio_veterinario = mv.pk_idmunicipio " +
-            "JOIN bairro bv ON v.fk_idbairro_veterinario = bv.pk_idbairro " +
+            "LEFT JOIN pet ON i.fk_idpet_internado = pet.pk_idpet " +
+            "LEFT JOIN especie esp ON esp.pk_idespecie = pet.fk_idespecie_pet " +
+            "LEFT JOIN raca ON raca.pk_idraca = pet.fk_idraca_pet " +
+            "LEFT JOIN tutor t ON t.pk_idtutor = pet.fk_idtutor_pet " +
+            "LEFT JOIN municipio mt ON t.fk_idmunicipio_tutor = mt.pk_idmunicipio " +
+            "LEFT JOIN bairro bt ON t.fk_idbairro_tutor = bt.pk_idbairro " +
+            "LEFT JOIN veterinario v ON v.pk_idveterinario = i.fk_idveterinario_internado " +
+            "LEFT JOIN municipio mv ON v.fk_idmunicipio_veterinario = mv.pk_idmunicipio " +
+            "LEFT JOIN bairro bv ON v.fk_idbairro_veterinario = bv.pk_idbairro " +
             "LEFT JOIN diaria_internacao di ON i.pk_idinternado = di.fk_idinternado_diaria_internacao " +
             // Você precisa RECONSTRUIR a lógica do filtro aqui.
             // Exemplo: " WHERE pet.nome_pet LIKE ? "

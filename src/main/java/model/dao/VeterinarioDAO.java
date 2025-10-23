@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
 import application.Principal;
@@ -43,8 +39,8 @@ public class VeterinarioDAO {
         try {
             String sql = "SELECT v.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario "
                     + "FROM veterinario v "
-                    + "JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
-                    + "JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) ";
+                    + "LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) ";
 //                    + "JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) "
 //                    + "JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv)";
 
@@ -166,12 +162,12 @@ public class VeterinarioDAO {
             String sql = "SELECT v.*, cv.*, c.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, "
                     + "mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica "
                     + "FROM veterinario v "
-                    + "JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
-                    + "JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
-                    + "JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) "
-                    + "JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv) "
-                    + "JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
-                    + "JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) "
+                    + "LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
+                    + "LEFT JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) "
+                    + "LEFT JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv) "
+                    + "LEFT JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) "
                     + "WHERE cv.fk_idveterinario_cv = ? "
                     + "ORDER BY v.nome_veterinario";
 
@@ -261,15 +257,13 @@ public class VeterinarioDAO {
         PreparedStatement stmt = null;
         boolean result = false;
         try {
-            // String SQL para INSERIR
-            String sql = "INSERT INTO veterinario (pk_idveterinario, fk_idbairro_veterinario, fk_idmunicipio_veterinario, nome_veterinario, "
-                    + "cpf_veterinario, crmv_veterinario, email_veterinario, telefone_veterinario, cep_veterinario, rua_veterinario, numero_veterinario, "
-                    + "observacao_veterinario, sexo_veterinario)"
+            String sql = "INSERT INTO veterinario (pk_idveterinario, fk_idbairro_veterinario, "
+                    + "fk_idmunicipio_veterinario, nome_veterinario, cpf_veterinario, crmv_veterinario, "
+                    + "email_veterinario, telefone_veterinario, cep_veterinario, rua_veterinario, "
+                    + "numero_veterinario, observacao_veterinario, sexo_veterinario)"
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             // O RETURN_GENERATED_KEYS retorna a chave primária gerada no momento do INSERT
             stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            //Trocando os ???
-
             stmt.setInt(1, veterinario.getId());
             stmt.setInt(2, veterinario.getBairro().getId());
             stmt.setInt(3, veterinario.getMunicipio().getId());
@@ -284,23 +278,17 @@ public class VeterinarioDAO {
             stmt.setString(12, veterinario.getObservacao());
             stmt.setBoolean(13, veterinario.isSexo());
 
-            // Executar o scipt
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
-                // Deu certo
                 // Pegando o código gerado no insert
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
-                    // getInt(1) pega o código que foi gerado e que está no primeiro campo do resultSet
                     int id = rs.getInt(1);
-                    //Atualiza o ID do veterinario no parâmetro que foi recebido pelo método
                     veterinario.setId(id);
                     result = true;
                     inserirListaClinicas(veterinario);
-                    //Depois daqui vai para o finally
                 }
             } else {
-                //falhou e vamos gerar uma exception para que o código caia automaticamente dentro do catch e depois no finally
                 throw new SQLException("Não foi possível inserir");
             }
         } catch (Exception e) {

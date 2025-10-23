@@ -1806,23 +1806,25 @@ public class TelaPreferenciasController implements Initializable {
     
     public void setDadosClinica() {
         clinica = new ClinicaService().getClinicaPrincipal();
-        txtNome.setText(clinica.getNomeClinica());
-        txtRazaoSocial.setText(clinica.getRazaoSocial());
-        txtCnpj.setText(Utils.imprimeCNPJ(clinica.getCnpj()));
-        txtRua.setText(clinica.getRuaClinica());
-        txtNumero.setText(clinica.getNumeroClinica());
-        txtCep.setText(Utils.imprimeCep(clinica.getCepClinica()));
-        txtTelefone.setText(Utils.imprimeTelefone(clinica.getTelefoneClinica()));
-        txtTelefoneSec.setText(Utils.imprimeTelefone(clinica.getTelefoneAlternativoClinica()));
-        txtEmail.setText(clinica.getEmailClinica());
-        txtObservacoes.setText(clinica.getObservacaoClinica());
-        cmbMunicipio.setValue(clinica.getMunicipioClinica());
-        listarBairros();
-        cmbBairro.setValue(clinica.getBairroClinica());
-        cmbVeterinarioResponsavel.setValue(clinica.getVeterinarioClinica());
-        ObservableList<Veterinario> listaObsVeterinarios = FXCollections.observableArrayList(new ClinicaService().getVeterinariosDaClinica(clinica.getIdClinica()));
-        listViewVeterinarios.setItems(listaObsVeterinarios);
-
+        
+        if (clinica != null) {
+            txtNome.setText(clinica.getNomeClinica());
+            txtRazaoSocial.setText(clinica.getRazaoSocial());
+            txtCnpj.setText(Utils.imprimeCNPJ(clinica.getCnpj()));
+            txtRua.setText(clinica.getRuaClinica());
+            txtNumero.setText(clinica.getNumeroClinica());
+            txtCep.setText(Utils.imprimeCep(clinica.getCepClinica()));
+            txtTelefone.setText(Utils.imprimeTelefone(clinica.getTelefoneClinica()));
+            txtTelefoneSec.setText(Utils.imprimeTelefone(clinica.getTelefoneAlternativoClinica()));
+            txtEmail.setText(clinica.getEmailClinica());
+            txtObservacoes.setText(clinica.getObservacaoClinica());
+            cmbMunicipio.setValue(clinica.getMunicipioClinica());
+            cmbBairro.setValue(clinica.getBairroClinica());
+            cmbVeterinarioResponsavel.setValue(clinica.getVeterinarioClinica());
+            ObservableList<Veterinario> listaObsVeterinarios = FXCollections.observableArrayList(new ClinicaService().getVeterinariosDaClinica(clinica.getIdClinica()));
+            listViewVeterinarios.setItems(listaObsVeterinarios);
+            listarBairros();
+        }
     }
     
     public void setValoresPadrao(){

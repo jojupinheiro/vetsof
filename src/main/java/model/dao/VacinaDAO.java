@@ -46,18 +46,18 @@ public class VacinaDAO {
                     + "bt.nome_bairro as nome_bairro_tutor, v.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, "
                     + "mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica "
                     + "FROM vacina vac "
-                    + "JOIN pet p on (vac.fk_idpet_vacina = p.pk_idpet) "
-                    + "JOIN nome_vac nv on (vac.fk_idnomevac_vacina = nv.pk_idnome_vac) "
-                    + "JOIN tipo_vac tv ON (vac.fk_idtipo_vac_vacina = tv.pk_idtipo_vac) "
-                    + "JOIN tutor t on (p.fk_idtutor_pet = t.pk_idtutor) "
-                    + "JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
-                    + "JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) "
-                    + "JOIN clinica c on (a.fk_idclinica_atendimento = c.pk_idclinica) "
-                    + "JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
-                    + "JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) "
-                    + "JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) "
-                    + "JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
-                    + "JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
+                    + "LEFT JOIN pet p on (vac.fk_idpet_vacina = p.pk_idpet) "
+                    + "LEFT JOIN nome_vac nv on (vac.fk_idnomevac_vacina = nv.pk_idnome_vac) "
+                    + "LEFT JOIN tipo_vac tv ON (vac.fk_idtipo_vac_vacina = tv.pk_idtipo_vac) "
+                    + "LEFT JOIN tutor t on (p.fk_idtutor_pet = t.pk_idtutor) "
+                    + "LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) "
+                    + "LEFT JOIN clinica c on (a.fk_idclinica_atendimento = c.pk_idclinica) "
+                    + "LEFT JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) "
+                    + "LEFT JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) "
+                    + "LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
                     + "WHERE p.pk_idpet = ?";
 
             //preparando a String sql para execução
@@ -181,20 +181,14 @@ public class VacinaDAO {
                     + "bt.nome_bairro as nome_bairro_tutor  "
 //                    + "mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica "
                     + "FROM vacina vac "
-                    + "JOIN pet p on (vac.fk_idpet_vacina = p.pk_idpet) "
-                    + "JOIN nome_vac nv on (vac.fk_idnome_vac_vacina = nv.pk_idnome_vac) "
-                    + "JOIN tipo_vac tv ON (vac.fk_idtipo_vac_vacina = tv.pk_idtipo_vac) "
-                    + "JOIN tutor t on (p.fk_idtutor_pet = t.pk_idtutor) "
-                    + "JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
-                    + "JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) "
-//                    + "JOIN clinica c on (a.fk_idclinica_atendimento = c.pk_idclinica) "
-//                    + "JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
-//                    + "JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) "
-//                    + "JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) "
-//                    + "JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
-//                    + "JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
-                    + "JOIN raca r on (r.pk_idraca = p.fk_idraca_pet) "
-                    + "JOIN especie e on (e.pk_idespecie = fk_idespecie_pet) "
+                    + "LEFT JOIN pet p on (vac.fk_idpet_vacina = p.pk_idpet) "
+                    + "LEFT JOIN nome_vac nv on (vac.fk_idnome_vac_vacina = nv.pk_idnome_vac) "
+                    + "LEFT JOIN tipo_vac tv ON (vac.fk_idtipo_vac_vacina = tv.pk_idtipo_vac) "
+                    + "LEFT JOIN tutor t on (p.fk_idtutor_pet = t.pk_idtutor) "
+                    + "LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) "
+                    + "LEFT JOIN raca r on (r.pk_idraca = p.fk_idraca_pet) "
+                    + "LEFT JOIN especie e on (e.pk_idespecie = fk_idespecie_pet) "
                     + "WHERE vac.idatendimento_vacina = ?";
 //mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario,
             
@@ -405,9 +399,9 @@ public class VacinaDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT vac.*, nv.*, tv.*, dv.* FROM vacina vac "
-                    + "JOIN nome_vac nv ON (vac.fk_idnome_vac_vacina = nv.pk_idnome_vac) "
-                    + "JOIN tipo_vac tv ON (vac.fk_idtipo_vac_vacina = tv.pk_idtipo_vac) "
-                    + "JOIN diaria_vacina dv ON (vac.pk_idvacina = dv.fk_idvacina_diaria_vacina) "
+                    + "LEFT JOIN nome_vac nv ON (vac.fk_idnome_vac_vacina = nv.pk_idnome_vac) "
+                    + "LEFT JOIN tipo_vac tv ON (vac.fk_idtipo_vac_vacina = tv.pk_idtipo_vac) "
+                    + "LEFT JOIN diaria_vacina dv ON (vac.pk_idvacina = dv.fk_idvacina_diaria_vacina) "
                     + "WHERE dv.fk_iddiaria_internacao_diaria_vacina = ?";
             
             //preparando a String sql para execução

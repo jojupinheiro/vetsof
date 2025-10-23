@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
 import java.sql.Connection;
@@ -44,12 +40,12 @@ public class SalaEsperaDAO {
         try {
             String sql = "SELECT se.*, p.*, t.*, r.*, e.*, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor " +
                     "FROM sala_espera se " +
-                    "JOIN pet p ON (se.fk_idpet_sala_espera = p.pk_idpet) " +
-                    "JOIN raca r ON (p.fk_idraca_pet = r.pk_idraca) " +
-                    "JOIN especie e ON (r.fk_idespecie = e.pk_idespecie) " +
-                    "JOIN tutor t ON (p.fk_idtutor_pet = t.pk_idtutor) " +
-                    "JOIN municipio mt ON (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) " +
-                    "JOIN bairro bt ON (t.fk_idbairro_tutor = bt.pk_idbairro) ";
+                    "LEFT JOIN pet p ON (se.fk_idpet_sala_espera = p.pk_idpet) " +
+                    "LEFT JOIN raca r ON (p.fk_idraca_pet = r.pk_idraca) " +
+                    "LEFT JOIN especie e ON (r.fk_idespecie = e.pk_idespecie) " +
+                    "LEFT JOIN tutor t ON (p.fk_idtutor_pet = t.pk_idtutor) " +
+                    "LEFT JOIN municipio mt ON (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) " +
+                    "LEFT JOIN bairro bt ON (t.fk_idbairro_tutor = bt.pk_idbairro) ";
 
 
             //preparando a String sql para execução

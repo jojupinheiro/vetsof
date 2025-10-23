@@ -39,7 +39,7 @@ public class MascarasFX {
                     textField.setText(oldValue);
                 }
                 String[] string = newValue.split("\\.");
-                if (string.length > 1 && string[1].length() > 2){
+                if (string.length > 1 && string[1].length() > 2) {
                     textField.setText(oldValue);
                 }
             }
@@ -178,54 +178,111 @@ public class MascarasFX {
 
     }
 
+//    public static void mascaraHorario(TextField textField) {
+//
+//        textField.setOnKeyTyped((KeyEvent event) -> {
+//            if ("0123456789".contains(event.getCharacter()) == false) {
+//                event.consume();
+//            }
+//
+//            if (event.getCharacter().trim().length() == 0) { // apagando
+//
+//                if (textField.getText().length() == 3) {
+//                    textField.setText(textField.getText().substring(0, 2));
+//                    textField.positionCaret(textField.getText().length());
+//                }
+//
+//            } else { // escrevendo
+//
+//                if (textField.getText().length() == 5) {
+//                    event.consume();
+//                }
+//
+//                if (textField.getText().length() == 2) {
+//                    if(textField.getText().contains(":")){
+//                        textField.setText("0" + textField.getText());
+//                    }else if (Integer.parseInt(Utils.formataDados(textField.getText())) > 23){
+//                        textField.setText("0" + textField.getText().substring(0,1) + ":" + textField.getText().substring(1,2));
+//                    }else{
+//                        textField.setText(textField.getText() + ":");
+//                    }
+//                    
+//                    textField.positionCaret(textField.getText().length());
+//                }
+//            }
+//        });
+//
+//        textField.setOnKeyReleased((KeyEvent evt) -> {
+//
+//            if (!textField.getText().matches("\\d:*")) {
+//                textField.setText(textField.getText().replaceAll("[^\\d:]", ""));
+//                textField.positionCaret(textField.getText().length());
+//            }
+//            if (textField.getText().length() == 6){
+//                textField.setText(textField.getText().substring(0, 5));
+//                textField.positionCaret(textField.getText().length());
+//            }
+//        });
+//
+//    }
     public static void mascaraHorario(TextField textField) {
 
-        textField.setOnKeyTyped((KeyEvent event) -> {
-            if ("0123456789".contains(event.getCharacter()) == false) {
-                event.consume();
-            }
-
-            if (event.getCharacter().trim().length() == 0) { // apagando
-
-                if (textField.getText().length() == 3) {
-                    textField.setText(textField.getText().substring(0, 2));
-                    textField.positionCaret(textField.getText().length());
-                }
-
-            } else { // escrevendo
-
-                if (textField.getText().length() == 5) {
-                    event.consume();
-                }
-
-                if (textField.getText().length() == 2) {
-                    if(textField.getText().contains(":")){
-                        textField.setText("0" + textField.getText());
-                    }else if (Integer.parseInt(Utils.formataDados(textField.getText())) > 23){
-                        textField.setText("0" + textField.getText().substring(0,1) + ":" + textField.getText().substring(1,2));
-                    }else{
-                        textField.setText(textField.getText() + ":");
-                    }
-                    
-                    textField.positionCaret(textField.getText().length());
-                }
+        // 1. Limita o tamanho máximo e permite apenas números e dois-pontos
+        textField.lengthProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() > 5) {
+                textField.setText(textField.getText(0, 5));
             }
         });
 
-        textField.setOnKeyReleased((KeyEvent evt) -> {
-
-            if (!textField.getText().matches("\\d:*")) {
-                textField.setText(textField.getText().replaceAll("[^\\d:]", ""));
-                textField.positionCaret(textField.getText().length());
-            }
-            if (textField.getText().length() == 6){
-                textField.setText(textField.getText().substring(0, 5));
-                textField.positionCaret(textField.getText().length());
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*[:]?\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d:]", ""));
             }
         });
 
+        // 2. A MÁGICA ACONTECE AQUI: Formata o texto quando o campo perde o foco
+        textField.focusedProperty().addListener((observable, hadFocus, isFocused) -> {
+            if (!isFocused) { // Se o campo perdeu o foco
+                String texto = textField.getText();
+                if (texto == null || texto.isEmpty()) {
+                    return;
+                }
+
+                // Remove qualquer formatação existente para pegar apenas os números
+                String[] partes = texto.split(":");
+                String apenasNumeros = String.join("", partes);
+
+                if (apenasNumeros.length() == 0) {
+                    return; // Não faz nada se estiver vazio
+                }
+
+                // Garante que o texto tenha 4 dígitos para formatação, preenchendo com zeros à esquerda
+                while (apenasNumeros.length() < 4) {
+                    apenasNumeros = "0" + apenasNumeros;
+                }
+
+                // Pega as partes de hora e minuto
+                String horaStr = apenasNumeros.substring(0, 2);
+                String minutoStr = apenasNumeros.substring(2, 4);
+
+                int hora = Integer.parseInt(horaStr);
+                int minuto = Integer.parseInt(minutoStr);
+
+                // Validação simples de hora e minuto
+                if (hora > 23) {
+                    hora = 23;
+                }
+                if (minuto > 59) {
+                    minuto = 59;
+                }
+
+                // Formata a string para o padrão HH:mm e atualiza o campo
+                String textoFormatado = String.format("%02d:%02d", hora, minuto);
+                textField.setText(textoFormatado);
+            }
+        });
     }
-    
+
     public static void mascaraCPF(TextField textField) {
 
         textField.setOnKeyTyped((KeyEvent event) -> {
@@ -347,8 +404,8 @@ public class MascarasFX {
         textField.setOnKeyTyped((KeyEvent event) -> {
             if (textField.getText().length() == 12) {
                 String string = Utils.formataDados(textField.getText());
-                textField.setText(string.substring(0, 2) + "." + string.substring(2, 5) + "." 
-                + string.substring(5, 8) + "/" + string.substring(8, 12) + "-" + string.substring(12));
+                textField.setText(string.substring(0, 2) + "." + string.substring(2, 5) + "."
+                        + string.substring(5, 8) + "/" + string.substring(8, 12) + "-" + string.substring(12));
             }
 
             // Se for maior do que 11 digitos, entao eh cnpj
@@ -539,7 +596,7 @@ public class MascarasFX {
         });
 
     }
-    
+
     public static void monetaryField(final TextField textField) {
         textField.setAlignment(Pos.CENTER_RIGHT);
         textField.lengthProperty().addListener(new ChangeListener<Number>() {
@@ -558,8 +615,9 @@ public class MascarasFX {
                 textField.textProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                        if (newValue.length() > 17)
+                        if (newValue.length() > 17) {
                             textField.setText(oldValue);
+                        }
                     }
                 });
             }
@@ -577,7 +635,7 @@ public class MascarasFX {
             }
         });
     }
-    
+
     private static void positionCaret(final TextField textField) {
         Platform.runLater(new Runnable() {
             @Override

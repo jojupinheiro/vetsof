@@ -36,11 +36,11 @@ public class ClinicaDAO {
             String sql = "SELECT clinica.*, v.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, mc.nome_municipio as nome_municipio_clinica, "
                     + "mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica\n"
                     + "FROM clinica\n"
-                    + "        JOIN veterinario v ON (clinica.fk_idveterinario_clinica = v.pk_idveterinario)\n"
-                    + "        JOIN municipio mv ON (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio)\n"
-                    + "        JOIN bairro bv ON (v.fk_idbairro_veterinario = bv.pk_idbairro)\n"
-                    + "        JOIN municipio mc ON (clinica.fk_idmunicipio_clinica = mc.pk_idmunicipio)\n"
-                    + "        JOIN bairro bc ON (clinica.fk_idbairro_clinica = bc.pk_idbairro)";
+                    + "        LEFT JOIN veterinario v ON (clinica.fk_idveterinario_clinica = v.pk_idveterinario)\n"
+                    + "        LEFT JOIN municipio mv ON (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio)\n"
+                    + "        LEFT JOIN bairro bv ON (v.fk_idbairro_veterinario = bv.pk_idbairro)\n"
+                    + "        LEFT JOIN municipio mc ON (clinica.fk_idmunicipio_clinica = mc.pk_idmunicipio)\n"
+                    + "        LEFT JOIN bairro bc ON (clinica.fk_idbairro_clinica = bc.pk_idbairro)";
 
             String filtroSql = "";
 
@@ -167,11 +167,11 @@ public class ClinicaDAO {
                     + "bv.nome_bairro as nome_bairro_veterinario, mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, "
                     + "bc.nome_bairro as nome_bairro_clinica "
                     + "FROM clinica c "
-                    + "JOIN veterinario v ON (c.fk_idveterinario_clinica = v.pk_idveterinario) "
-                    + "JOIN municipio mv ON (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
-                    + "JOIN bairro bv ON (v.fk_idbairro_veterinario = bv.pk_idbairro) "
-                    + "JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
-                    + "JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) "
+                    + "LEFT JOIN veterinario v ON (c.fk_idveterinario_clinica = v.pk_idveterinario) "
+                    + "LEFT JOIN municipio mv ON (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bv ON (v.fk_idbairro_veterinario = bv.pk_idbairro) "
+                    + "LEFT JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) "
                     + "WHERE c.pk_idclinica = 1 ";
 
             //preparando a String sql para execução
@@ -260,12 +260,12 @@ public class ClinicaDAO {
             String sql = "SELECT c.*, cv.*, v.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, "
                     + "mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica "
                     + "FROM veterinario v "
-                    + "JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
-                    + "JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
-                    + "JOIN clinica c ON (c.fk_idveterinario_clinica = v.pk_idveterinario) "
-                    + "JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
-                    + "JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) "
-                    + "JOIN clinica_veterinario cv on (cv.fk_idveterinario_cv = v.pk_idveterinario) "
+                    + "LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) "
+                    + "LEFT JOIN clinica c ON (c.fk_idveterinario_clinica = v.pk_idveterinario) "
+                    + "LEFT JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) "
+                    + "LEFT JOIN clinica_veterinario cv on (cv.fk_idveterinario_cv = v.pk_idveterinario) "
                     + "WHERE c.pk_idclinica = ?";
 
             stmt = con.prepareStatement(sql);
@@ -349,21 +349,21 @@ public class ClinicaDAO {
             String sql =  "SELECT v.*, c.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, \n" +
 "                    mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica \n" +
 "                    FROM veterinario v \n" +
-"                    JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
-"                    JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) \n" +
-"                    JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) \n" +
-"                    JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv) \n" +
-"                    JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
-"                    JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
+"                    LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) \n" +
+"                    LEFT JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) \n" +
+"                    LEFT JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv) \n" +
+"                    LEFT JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
 "                    WHERE cv.fk_idclinica_cv = ? UNION\n" +
 "                    SELECT v.*, c.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, \n" +
 "                    mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica \n" +
 "                    FROM veterinario v \n" +
-"                    JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
-"                    JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) \n" +
-"                    JOIN clinica c ON (c.fk_idveterinario_clinica = v.pk_idveterinario) \n" +
-"                    JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
-"                    JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
+"                    LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) \n" +
+"                    LEFT JOIN clinica c ON (c.fk_idveterinario_clinica = v.pk_idveterinario) \n" +
+"                    LEFT JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
 "                    WHERE c.fk_idveterinario_clinica = ? AND c.pk_idclinica = ? ";
 
             stmt = con.prepareStatement(sql);
@@ -425,12 +425,12 @@ public class ClinicaDAO {
             String sql = "SELECT v.*, c.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, \n" +
 "                    mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica \n" +
 "                    FROM veterinario v \n" +
-"                    JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
-"                    JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) \n" +
-"                    JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) \n" +
-"                    JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv) \n" +
-"                    JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
-"                    JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
+"                    LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) \n" +
+"                    LEFT JOIN clinica_veterinario cv ON (cv.fk_idveterinario_cv = v.pk_idveterinario) \n" +
+"                    LEFT JOIN clinica c ON (c.pk_idclinica = cv.fk_idclinica_cv) \n" +
+"                    LEFT JOIN municipio mc on (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bc on (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
 "                    WHERE cv.fk_idclinica_cv = ? ";
 
 

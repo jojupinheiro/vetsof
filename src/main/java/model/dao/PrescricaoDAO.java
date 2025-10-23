@@ -48,16 +48,16 @@ public class PrescricaoDAO {
             String sql = "SELECT p.*, pet.*, e.*, r.*, t.*, v.*, c.*, mc.*, bc.*, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor, "
                     + "mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica "
                     + "FROM prescricao p "
-                    + "JOIN pet ON (p.fk_idpet_prescricao = pet.pk_idpet) "
-                    + "JOIN especie e ON (pet.fk_idespecie_pet = e.pk_idespecie) "
-                    + "JOIN raca r ON (pet.fk_idraca_pet = r.pk_idraca) "
-                    + "JOIN tutor t ON (pet.fk_idtutor_pet = t.pk_idtutor) "
-                    + "JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
-                    + "JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) "
-                    + "JOIN veterinario v on (p.fk_idveterinario_prescricao = v.pk_idveterinario) "
-                    + "JOIN clinica c on (c.pk_idclinica = p.fk_idclinica_prescricao) "
-                    + "JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
-                    + "JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro)";
+                    + "LEFT JOIN pet ON (p.fk_idpet_prescricao = pet.pk_idpet) "
+                    + "LEFT JOIN especie e ON (pet.fk_idespecie_pet = e.pk_idespecie) "
+                    + "LEFT JOIN raca r ON (pet.fk_idraca_pet = r.pk_idraca) "
+                    + "LEFT JOIN tutor t ON (pet.fk_idtutor_pet = t.pk_idtutor) "
+                    + "LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) "
+                    + "LEFT JOIN veterinario v on (p.fk_idveterinario_prescricao = v.pk_idveterinario) "
+                    + "LEFT JOIN clinica c on (c.pk_idclinica = p.fk_idclinica_prescricao) "
+                    + "LEFT JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) "
+                    + "LEFT JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro)";
 
             String filtroSql = "";
 
@@ -271,7 +271,7 @@ public class PrescricaoDAO {
         try {
             String sql = "SELECT p.pk_idprescricao, pp.* "
                     + "FROM prescricao p "
-                    + "JOIN produto_prescrito pp ON (p.pk_idprescricao = pp.fk_idprescricao_produto_prescrito)"
+                    + "LEFT JOIN produto_prescrito pp ON (p.pk_idprescricao = pp.fk_idprescricao_produto_prescrito)"
                     + "WHERE p.pk_idprescricao = ?";
 
             //preparando a String sql para execução

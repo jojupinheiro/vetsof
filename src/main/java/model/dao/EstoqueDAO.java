@@ -31,8 +31,8 @@ public class EstoqueDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT e.*, p.*, cp.* FROM estoque e " +
-                         "JOIN produto p ON (e.fk_idproduto_estoque = p.pk_idproduto) " +
-                         "JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) ";
+                         "LEFT JOIN produto p ON (e.fk_idproduto_estoque = p.pk_idproduto) " +
+                         "LEFT JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) ";
 
             String filtroSql = "";
 
@@ -144,10 +144,10 @@ public class EstoqueDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT e.*, ci.*, di.*, p.*, cp.* FROM estoque e " +
-                         "JOIN produto p ON (p.pk_idproduto = e.fk_idproduto_estoque) " +
-                         "JOIN categoria_prod cp ON (p.fk_idcategoria_prod_produto = cp.pk_idcategoria_prod) " +
-                         "JOIN consumo_internacao ci ON (e.pk_idestoque = ci.fk_idestoque_consumo_internacao) " +
-                         "JOIN diaria_internacao di ON (di.pk_iddiaria_internacao = ci.fk_iddiaria_internacao_consumo_internacao) " +
+                         "LEFT JOIN produto p ON (p.pk_idproduto = e.fk_idproduto_estoque) " +
+                         "LEFT JOIN categoria_prod cp ON (p.fk_idcategoria_prod_produto = cp.pk_idcategoria_prod) " +
+                         "LEFT JOIN consumo_internacao ci ON (e.pk_idestoque = ci.fk_idestoque_consumo_internacao) " +
+                         "LEFT JOIN diaria_internacao di ON (di.pk_iddiaria_internacao = ci.fk_iddiaria_internacao_consumo_internacao) " +
                          "WHERE di.pk_iddiaria_internacao = ?";
 
             //preparando a String sql para execução
@@ -210,8 +210,8 @@ public class EstoqueDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT e.*, p.*, cp.* FROM estoque e " +
-                         "JOIN produto p ON (e.fk_idproduto_estoque = p.pk_idproduto) " +
-                         "JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) " +
+                         "LEFT JOIN produto p ON (e.fk_idproduto_estoque = p.pk_idproduto) " +
+                         "LEFT JOIN categoria_prod cp ON (cp.pk_idcategoria_prod = p.fk_idcategoria_prod_produto) " +
                          "WHERE e.pk_idestoque = ? " +
                          "ORDER BY p.nome_produto";
 

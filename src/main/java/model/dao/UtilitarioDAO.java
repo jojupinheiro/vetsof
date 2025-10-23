@@ -66,7 +66,7 @@ public class UtilitarioDAO {
 
         try {
             String sql = "SELECT * FROM bairro b "
-                    + "JOIN municipio m ON (b.fk_idmunicipio_bairro = m.pk_idmunicipio) "
+                    + "LEFT JOIN municipio m ON (b.fk_idmunicipio_bairro = m.pk_idmunicipio) "
                     + "where m.pk_idmunicipio = ? order by nome_bairro";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, municipio.getId());

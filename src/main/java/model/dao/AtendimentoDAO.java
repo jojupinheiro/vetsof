@@ -58,18 +58,18 @@ public class AtendimentoDAO {
             String sql = "SELECT a.*, p.*, c.*, t.*, v.*, e.*, r.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, mc.nome_municipio as nome_municipio_clinica, \n" +
 "                    mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor\n" +
 "                    FROM atendimento a \n" +
-"                    JOIN pet p ON (p.pk_idpet = a.fk_idpet_atendimento) \n" +
-"                    JOIN raca r ON (p.fk_idraca_pet = r.pk_idraca) \n" +
-"                    JOIN especie e ON (r.fk_idespecie = e.pk_idespecie) \n" +
-"                    JOIN clinica c ON (c.pk_idclinica = a.fk_idclinica_atendimento) \n" +
-"                    JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
-"                    JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
-"                    JOIN tutor t on (t.pk_idtutor = p.fk_idtutor_pet) \n" +
-"                    JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) \n" +
-"                    JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) \n" +
-"                    JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) \n" +
-"                    JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
-"                    JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) ";
+"                    LEFT JOIN pet p ON (p.pk_idpet = a.fk_idpet_atendimento) \n" +
+"                    LEFT JOIN raca r ON (p.fk_idraca_pet = r.pk_idraca) \n" +
+"                    LEFT JOIN especie e ON (r.fk_idespecie = e.pk_idespecie) \n" +
+"                    LEFT JOIN clinica c ON (c.pk_idclinica = a.fk_idclinica_atendimento) \n" +
+"                    LEFT JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
+"                    LEFT JOIN tutor t on (t.pk_idtutor = p.fk_idtutor_pet) \n" +
+"                    LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) \n" +
+"                    LEFT JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) \n" +
+"                    LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
+"                    LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) ";
             
             String filtroSql = "";
 
@@ -445,8 +445,8 @@ public class AtendimentoDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT s.*, a_s.* a.* FROM servico s"
-                    + "JOIN atendimento_servico as ON (a_s.fk_idservico = s.pk_idservico)"
-                    + "JOIN atendimento a ON (a_s.fk_idatendimento = a.pk_idatendimento)"
+                    + "LEFT JOIN atendimento_servico as ON (a_s.fk_idservico = s.pk_idservico)"
+                    + "LEFT JOIN atendimento a ON (a_s.fk_idatendimento = a.pk_idatendimento)"
                     + "WHERE pk_idatendimento = ?";
 
             int idAtendimento = atendimento.getIdAtendimento();

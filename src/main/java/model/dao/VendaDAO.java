@@ -95,9 +95,9 @@ public class VendaDAO {
             }
 
             sql = "SELECT ve.*, e.*, p.*, cp.* FROM venda_estoque ve "
-                    + "join estoque e on (ve.fk_idestoque = e.pk_idestoque) "
-                    + "join produto p on (e.fk_idproduto_estoque = p.pk_idproduto) "
-                    + "join categoria_prod cp on (p.fk_idcategoria_prod_produto = cp.pk_idcategoria_prod)";
+                    + "LEFT join estoque e on (ve.fk_idestoque = e.pk_idestoque) "
+                    + "LEFT join produto p on (e.fk_idproduto_estoque = p.pk_idproduto) "
+                    + "LEFT join categoria_prod cp on (p.fk_idcategoria_prod_produto = cp.pk_idcategoria_prod)";
             stmt = con.prepareStatement(sql);
             res = stmt.executeQuery();
             int index = 0;

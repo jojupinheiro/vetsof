@@ -46,11 +46,11 @@ public class PetDAO {
 
         try {
             String sql = "SELECT pet.*, t.*, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor, e.*, r.* FROM pet\n"
-                    + " JOIN tutor t on (pet.fk_idtutor_pet = t.pk_idtutor)"
-                    + " JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio)"
-                    + " JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro)"
-                    + " JOIN especie e on (pet.fk_idespecie_pet = e.pk_idespecie)"
-                    + " JOIN raca r on (pet.fk_idraca_pet = r.pk_idraca)";
+                    + " LEFT JOIN tutor t on (pet.fk_idtutor_pet = t.pk_idtutor)"
+                    + " LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio)"
+                    + " LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro)"
+                    + " LEFT JOIN especie e on (pet.fk_idespecie_pet = e.pk_idespecie)"
+                    + " LEFT JOIN raca r on (pet.fk_idraca_pet = r.pk_idraca)";
 
             String filtroSql = "";
 
@@ -350,7 +350,7 @@ public class PetDAO {
 
         try {
             String sql = "SELECT concat(Upper(substr(nome_raca, 1,1)), lower(substr(nome_raca, 2,length(nome_raca)))) as raca, pk_idraca FROM raca "
-                    + "JOIN especie ON (especie.pk_idespecie = raca.fk_idespecie) "
+                    + "LEFT JOIN especie ON (especie.pk_idespecie = raca.fk_idespecie) "
                     + "where especie.pk_idespecie = ? "
                     + "order by raca";
             stmt = con.prepareStatement(sql);

@@ -10,6 +10,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import model.classes.utilitario.Especie;
 
 /**
@@ -88,7 +89,7 @@ public class Utils {
             return cell;
         });
     }
-    
+
     public static <T> void formatTableColumnTempoDecorrido(TableColumn<T, String> tableColumn) {
         tableColumn.setCellFactory(column -> {
             TableCell<T, String> cell = new TableCell<T, String>() {
@@ -141,7 +142,7 @@ public class Utils {
             return cell;
         });
     }
-    
+
     public static <T> void formatTableColumnEspecie(TableColumn<T, Especie> tableColumn) {
         tableColumn.setCellFactory(column -> {
             TableCell<T, Especie> cell = new TableCell<T, Especie>() {
@@ -322,71 +323,81 @@ public class Utils {
                 + CNPJ.substring(5, 8) + "/" + CNPJ.substring(8, 12)
                 + "-" + CNPJ.substring(12));
     }
-    
+
     public static String imprimeCPFouCNPJ(String CPFouCNPJ) {
-        if (CPFouCNPJ.length() == 11){
+        if (CPFouCNPJ.length() == 11) {
             return (CPFouCNPJ.substring(0, 3) + "." + CPFouCNPJ.substring(3, 6) + "."
-                + CPFouCNPJ.substring(6, 9) + "-" + CPFouCNPJ.substring(9, 11));
-        }else{
+                    + CPFouCNPJ.substring(6, 9) + "-" + CPFouCNPJ.substring(9, 11));
+        } else {
             return (CPFouCNPJ.substring(0, 2) + "." + CPFouCNPJ.substring(2, 5) + "."
-                + CPFouCNPJ.substring(5, 8) + "/" + CPFouCNPJ.substring(8, 12)
-                + "-" + CPFouCNPJ.substring(12));
+                    + CPFouCNPJ.substring(5, 8) + "/" + CPFouCNPJ.substring(8, 12)
+                    + "-" + CPFouCNPJ.substring(12));
         }
     }
-    
+
     public static String imprimePeso(String valor) {
         valor = valor.replace(".", ",");
-        if(valor.split(",")[1].length() < 2){
+        if (valor.split(",")[1].length() < 2) {
             valor += "0";
         }
         return valor + " kg";
     }
-    
+
     public static String imprimeValor(String valor) {
         valor = valor.replace(".", ",");
-        if(valor.split(",")[1].length() < 2){
+        if (valor.split(",")[1].length() < 2) {
             valor += "0";
         }
         return valor;
     }
-    
+
     public static String imprimeNumero(Number numero) {
         return String.valueOf(numero).replace(".", ",");
     }
-    
+
     public static String imprimeTelefone(String numero) {
         String numFormatado;
-        if(numero.length() == 11){
+        if (numero.length() == 11) {
             numFormatado = "(" + numero.substring(0, 2) + ") " + numero.substring(2, 7) + " " + numero.substring(7);
-        }else if (numero.length() == 10){
+        } else if (numero.length() == 10) {
             numFormatado = "(" + numero.substring(0, 2) + ") " + numero.substring(2, 6) + " " + numero.substring(6);
-        }else{
+        } else {
             numFormatado = "";
         }
         return numFormatado;
     }
-    
+
     public static String imprimeCep(String cep) {
         return cep.substring(0, 5) + "-" + cep.substring(5);
     }
-    
-    public static String imprimeData(LocalDate data){
+
+    public static String imprimeData(LocalDate data) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         return data.format(formatter);
     }
-    
-    public static String imprimeHora(LocalTime hora){
+
+    public static String imprimeHora(LocalTime hora) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return hora.format(formatter);
     }
-    
-    public static String imprimePorcentagem(Number numero){
+
+    public static String imprimePorcentagem(Number numero) {
         String string = String.format("%.1f", numero);
         string = string.replace(".", ",");
-        if(string.contains(",") && Integer.parseInt(string.split(",")[1]) == 0){
+        if (string.contains(",") && Integer.parseInt(string.split(",")[1]) == 0) {
             return string.split(",")[0] + "%";
-        }else{
+        } else {
             return string + "%";
         }
+    }
+
+    public static void atualizarHorario(TextField txt) {
+        // Define o padrão de formatação "HH" para hora com 2 dígitos e "mm" para minuto com 2 dígitos.
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("HH:mm");
+
+        // Pega a hora atual e a formata usando o padrão definido.
+        String horarioFormatado = LocalTime.now().format(formatador);
+
+        txt.setText(horarioFormatado);
     }
 }

@@ -32,8 +32,8 @@ public class ServicoRealizadoDAO {
         
         try {
             String sql = "SELECT er.*, e.*, a.* FROM servico_realizado er "
-                    + "JOIN servico e ON (er.fk_idservico_servico_realizado = e.pk_idservico) "
-                    + "JOIN atendimento a ON (er.idatendimento_servico_realizado = a.pk_idatendimento) "
+                    + "LEFT JOIN servico e ON (er.fk_idservico_servico_realizado = e.pk_idservico) "
+                    + "LEFT JOIN atendimento a ON (er.idatendimento_servico_realizado = a.pk_idatendimento) "
                     + "WHERE er.fk_idpet_servico_realizado = ?";
 
             //preparando a String sql para execução
@@ -81,8 +81,8 @@ public class ServicoRealizadoDAO {
         
         try {
             String sql = "SELECT er.*, e.*, a.* FROM servico_realizado er "
-                    + "JOIN servico e ON (er.fk_idservico_servico_realizado = e.pk_idservico) "
-                    + "JOIN atendimento a ON (er.idatendimento_servico_realizado = a.pk_idatendimento) "
+                    + "LEFT JOIN servico e ON (er.fk_idservico_servico_realizado = e.pk_idservico) "
+                    + "LEFT JOIN atendimento a ON (er.idatendimento_servico_realizado = a.pk_idatendimento) "
                     + "WHERE er.idatendimento_servico_realizado = ?";
 
             //preparando a String sql para execução
@@ -129,9 +129,9 @@ public class ServicoRealizadoDAO {
         
         try {
             String sql = "SELECT er.*, e.*, de.*, di.* FROM servico_realizado er "
-                    + "JOIN servico e ON (er.fk_idservico_servico_realizado = e.pk_idservico) "
-                    + "JOIN diaria_servico de ON (de.fk_idservico_realizado_diaria_servico = er.pk_idservico_realizado) "
-                    + "JOIN diaria_internacao di ON (di.pk_iddiaria_internacao = de.fk_iddiaria_internacao_diaria_servico) "
+                    + "LEFT JOIN servico e ON (er.fk_idservico_servico_realizado = e.pk_idservico) "
+                    + "LEFT JOIN diaria_servico de ON (de.fk_idservico_realizado_diaria_servico = er.pk_idservico_realizado) "
+                    + "LEFT JOIN diaria_internacao di ON (di.pk_iddiaria_internacao = de.fk_iddiaria_internacao_diaria_servico) "
                     + "WHERE di.pk_iddiaria_internacao = ?";
 
             //preparando a String sql para execução

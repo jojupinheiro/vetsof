@@ -365,10 +365,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
             listarVeterinarios();
         });
         
-        btnAtualizarHorario.setOnAction((t) -> {
-            String horario = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute();
-            txtHorarioAtendimento.setText(horario);
-        });
+        btnAtualizarHorario.setOnAction((t) -> Utils.atualizarHorario(txtHorarioAtendimento));
         
         btnPrescricao.setOnAction((t) -> {
             cadastrarPrescricaoDoAtendimento(atendimento, btnLimpar.getScene().getWindow());
@@ -998,8 +995,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
             }else{
                 scmbPet.setDisable(false);
             }
-            String horario = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute();
-            txtHorarioAtendimento.setText(horario);
+            Utils.atualizarHorario(txtHorarioAtendimento);
         } else {
             if (dpDataAtendimento.getValue() != null) {
                 dpDtVacina.setValue(dpDataAtendimento.getValue());

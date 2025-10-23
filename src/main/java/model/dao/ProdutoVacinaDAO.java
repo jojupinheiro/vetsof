@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
 import java.sql.Connection;
@@ -43,7 +39,7 @@ public class ProdutoVacinaDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "SELECT * FROM nome_vac nv "
-                    + "JOIN tipo_vac tv on (nv.fk_idtipo_vac = tv.pk_idtipo_vac) "
+                    + "LEFT JOIN tipo_vac tv on (nv.fk_idtipo_vac = tv.pk_idtipo_vac) "
                     + "WHERE fk_idtipo_vac = ? "
                     + "ORDER BY nome_vac";
 

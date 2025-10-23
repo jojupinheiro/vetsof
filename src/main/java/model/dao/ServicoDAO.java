@@ -79,8 +79,8 @@ public class ServicoDAO {
         PreparedStatement stmt = null;
         try {
             String sql = "select * from servico\n"
-                    + "join atendimento_servico on (servico.pk_idservico = atendimento_servico.fk_idservico)\n"
-                    + "join atendimento on (atendimento_servico.fk_idatendimento = atendimento.pk_idatendimento)\n"
+                    + "LEFT join atendimento_servico on (servico.pk_idservico = atendimento_servico.fk_idservico)\n"
+                    + "LEFT join atendimento on (atendimento_servico.fk_idatendimento = atendimento.pk_idatendimento)\n"
                     + "where atendimento.pk_idatendimento = ?";
             stmt = con.prepareStatement(sql);
 

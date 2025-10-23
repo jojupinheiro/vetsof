@@ -33,9 +33,9 @@ public class ExameRealizadoDAO {
         
         try {
             String sql = "SELECT er.*, e.*, a.* FROM exame_realizado er "
-                    + "JOIN exame e ON (er.fk_idexame_exame_realizado = e.pk_idexame) "
-                    + "JOIN atendimento a ON (er.idatendimento_exame_realizado = a.pk_idatendimento) "
-                    + "JOIN atendimento a ON (er.idatendimento_exame_realizado = a.pk_idatendimento) "
+                    + "LEFT JOIN exame e ON (er.fk_idexame_exame_realizado = e.pk_idexame) "
+                    + "LEFT JOIN atendimento a ON (er.idatendimento_exame_realizado = a.pk_idatendimento) "
+                    + "LEFT JOIN atendimento a ON (er.idatendimento_exame_realizado = a.pk_idatendimento) "
                     + "WHERE er.fk_idpet_exame_realizado = ?";
 
             //preparando a String sql para execução
@@ -83,8 +83,8 @@ public class ExameRealizadoDAO {
         
         try {
             String sql = "SELECT er.*, e.*, a.* FROM exame_realizado er "
-                    + "JOIN exame e ON (er.fk_idexame_exame_realizado = e.pk_idexame) "
-                    + "JOIN atendimento a ON (er.idatendimento_exame_realizado = a.pk_idatendimento) "
+                    + "LEFT JOIN exame e ON (er.fk_idexame_exame_realizado = e.pk_idexame) "
+                    + "LEFT JOIN atendimento a ON (er.idatendimento_exame_realizado = a.pk_idatendimento) "
                     + "WHERE er.idatendimento_exame_realizado = ?";
 
             //preparando a String sql para execução
@@ -131,9 +131,9 @@ public class ExameRealizadoDAO {
         
         try {
             String sql = "SELECT er.*, e.*, de.*, di.* FROM exame_realizado er "
-                    + "JOIN exame e ON (er.fk_idexame_exame_realizado = e.pk_idexame) "
-                    + "JOIN diaria_exame de ON (de.fk_idexame_realizado_diaria_exame = er.pk_idexame_realizado) "
-                    + "JOIN diaria_internacao di ON (di.pk_iddiaria_internacao = de.fk_iddiaria_internacao_diaria_exame) "
+                    + "LEFT JOIN exame e ON (er.fk_idexame_exame_realizado = e.pk_idexame) "
+                    + "LEFT JOIN diaria_exame de ON (de.fk_idexame_realizado_diaria_exame = er.pk_idexame_realizado) "
+                    + "LEFT JOIN diaria_internacao di ON (di.pk_iddiaria_internacao = de.fk_iddiaria_internacao_diaria_exame) "
                     + "WHERE di.pk_iddiaria_internacao = ?";
 
             //preparando a String sql para execução

@@ -1,3 +1,19 @@
+-- USUÁRIO TESTE
+insert into usuario (login_usuario, nome_usuario, senha_usuario, email_usuario, cargo_usuario, tipo_usuario)
+values ('teste', 'teste', 'teste', 'jj@ifsul.edu.br', 'Secretário', 1);
+
+INSERT INTO preferencia (nome_preferencia, escolha_preferencia) VALUES
+(1, 1),    -- 1 [1,2] - Modo de uso [clinica, instituicao]
+(2, 1);    -- 2 [1,2] - Logotipo do software [Logo VetSof, Logo personalizado]
+
+INSERT INTO estilo (nome_estilo, ativo_estilo) VALUES 
+('estiloPadrao.css', 1),
+('blueSky.css', 0);
+
+INSERT INTO valores_padrao (codigo_valores_padrao, valor_valores_padrao, string_valores_padrao) VALUES
+(1, null, null),
+(2, null, null);
+
 -- MUNICÍPIOS
 INSERT INTO municipio (nome_municipio, estado_municipio) VALUES
 -- Municípios do Vale do Taquari
@@ -244,3 +260,23 @@ INSERT INTO raca (nome_raca, fk_idespecie) VALUES
 ('Cacatua', 7),
 ('Agapornis', 7);
 
+INSERT INTO tipo_vac (tipo_vac) VALUES
+('Antirrábica'),
+('FeLV'),
+('Giárdia'),
+('Leptospirose'),
+('Leishmaniose'),
+('Tosse dos Canis'),
+('V8'),
+('V10');
+
+INSERT INTO nome_vac (nome_vac, fk_idtipo_vac, laboratorio_nome_vac, valor_nome_vac) VALUES
+('Nobivac', 1, 'MSD', 60),
+('Felocell', 2, 'Zoetis', 150),
+('GiardiaVax', 3, 'Zoetis', 80),
+('Guard-Vac', 4, 'Zoetis', 70),
+('Leishmune', 5, 'Zoetis', 120),
+('BronchiGuard', 6, 'Zoetis', 70),
+('Vanguard B Oral', 6, 'Zoetis', 130),
+('Vanguard HTLP', 7, 'Zoetis', 80),
+('Vanguard Plus', 8, 'Zoetis', 85);

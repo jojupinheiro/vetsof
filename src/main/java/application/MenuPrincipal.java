@@ -207,11 +207,12 @@ public class MenuPrincipal {
         }
     }
 
-    public void cadastrarPet(Window janela) {
+    public Pet cadastrarPet(Window janela) {
         try {
             URL url = getClass().getResource("TelaCadastroPet.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             Parent parent = loader.load();
+            TelaCadastroPetController cont = loader.getController();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setTitle("Cadastro de Pets");
@@ -222,21 +223,23 @@ public class MenuPrincipal {
             stage.setMinHeight(800);
             stage.initOwner(janela);
             stage.initModality(Modality.WINDOW_MODAL);
-            TelaCadastroPetController cont = loader.getController();
             cont.ajustarTela();
             stage.showAndWait();
+            return cont.getPetCadastrado();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    public void cadastrarPetDoTutor(Tutor tutor, Window janela) {
+    public Pet cadastrarPetDoTutor(Tutor tutor, Window janela) {
         Pet pet = new Pet();
         pet.setTutorPet(tutor);
         try {
             URL url = getClass().getResource("TelaCadastroPet.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             Parent parent = loader.load();
+            TelaCadastroPetController cont = loader.getController();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setTitle("Cadastro de Pets");
@@ -247,12 +250,13 @@ public class MenuPrincipal {
             stage.setMinHeight(800);
             stage.initOwner(janela);
             stage.initModality(Modality.WINDOW_MODAL);
-            TelaCadastroPetController cont = loader.getController();
             cont.setTutorPet(pet);
             cont.ajustarTela();
             stage.showAndWait();
+            return cont.getPetCadastrado();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
     
@@ -422,11 +426,12 @@ public class MenuPrincipal {
         }
     }
 
-    public void cadastrarTutor(Window janela) {
+    public Tutor cadastrarTutor(Window janela) {
         try {
             URL url = getClass().getResource("TelaCadastroTutor.fxml");
             FXMLLoader loader = new FXMLLoader(url);
             Parent parent = loader.load();
+            TelaCadastroTutorController cont = loader.getController();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setTitle("Cadastro de Tutores");
@@ -437,11 +442,12 @@ public class MenuPrincipal {
             stage.setMinHeight(800);
             stage.initOwner(janela);
             stage.initModality(Modality.WINDOW_MODAL);
-            TelaCadastroTutorController cont = loader.getController();
             cont.ajustarTela();
             stage.showAndWait();
+            return cont.getTutorSalvo();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

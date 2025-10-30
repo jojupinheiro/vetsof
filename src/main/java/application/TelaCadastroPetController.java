@@ -78,6 +78,7 @@ public class TelaCadastroPetController implements Initializable {
     @FXML    private Spinner<Integer> spnMeses;
 
     private Pet pet;
+    private Pet petCadastrado;
 
     List<Especie> listaEspecies = new PetService().getEspecies();
     List<Raca> listaRacas;
@@ -302,6 +303,7 @@ public class TelaCadastroPetController implements Initializable {
 
                     // Deu certo
                     // Posso fechar a janela
+                    this.petCadastrado = pet;
                     ((Stage) btnCancelar.getScene().getWindow()).close();
                 } else {
                     // Deu erro. O retorno do boolean veio false
@@ -405,5 +407,9 @@ public class TelaCadastroPetController implements Initializable {
         lblErroRaca.setText(campos.contains("Raca") ? errors.get("Raca") : "");
         lblErroTutor.setText(campos.contains("Tutor") ? errors.get("Tutor") : "");
         lblErroEspecie.setText(campos.contains("Especie") ? errors.get("Especie") : "");
+    }
+    
+    public Pet getPetCadastrado(){
+        return this.petCadastrado;
     }
 }

@@ -603,9 +603,10 @@ public class ClinicaDAO {
         try {
             String sql = "UPDATE clinica SET \n"
                     + "nome_clinica = ?, cnpj_clinica = ?, email_clinica = ?, fk_idveterinario_clinica = ?, rua_clinica = ?, fk_idbairro_clinica = ?, "
-                    + "numero_clinica = ?, cep_clinica = ?, telefone_clinica = ?, telefone_alternativo_clinica = ?, fk_idmunicipio_clinica = ?, dtcadastro_clinica = ?\n"
-                    + "WHERE pk_idclinica = ?;";
+                    + "numero_clinica = ?, cep_clinica = ?, telefone_clinica = ?, telefone_alternativo_clinica = ?, fk_idmunicipio_clinica = ?, dtcadastro_clinica = ?, "
+                    + "razao_social_clinica = ? WHERE pk_idclinica = ?;";
             String nomeClinica = clinica.getNomeClinica();
+            String razalSocialClinica = clinica.getRazaoSocial();
             String cnpj = clinica.getCnpj();
             String emailClinica = clinica.getEmailClinica();
             int veterinario = clinica.getVeterinarioClinica().getId();
@@ -637,7 +638,8 @@ public class ClinicaDAO {
             } else {
                 stmt.setDate(12, Date.valueOf(dataCadastro));
             }
-            stmt.setInt(13, idClinica);
+            stmt.setString(13, razalSocialClinica);
+            stmt.setInt(14, idClinica);
             stmt.executeUpdate();
             result = true;
         } catch (Exception e) {

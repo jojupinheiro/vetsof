@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS clinica (
     fk_idbairro_clinica INT,
     fk_idmunicipio_clinica INT NOT NULL,
     nome_clinica VARCHAR(60) NOT NULL,
-    razao_social_clinica VARCHAR(120),
+    razao_social_clinica VARCHAR(150),
     cnpj_clinica CHAR(14) NOT NULL,
     email_clinica VARCHAR(60) NOT NULL,
     rua_clinica VARCHAR(60),

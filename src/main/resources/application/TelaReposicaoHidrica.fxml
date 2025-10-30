@@ -21,7 +21,7 @@
 
 <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1171.0" styleClass="fundo1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TelaReposicaoHidricaController">
    <children>
-      <AnchorPane layoutX="88.0" layoutY="-41.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="1171.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="fundo-calculadora" layoutX="88.0" layoutY="-41.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="1171.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" layoutX="211.0" layoutY="10.0" prefHeight="120.0" prefWidth="888.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

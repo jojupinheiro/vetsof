@@ -76,6 +76,7 @@ public class TelaCadastroTutorController implements Initializable {
     @FXML    private TextField txtTelefoneSec;
 
     private Tutor tutor;
+    private Tutor tutorSalvo;
 
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
@@ -277,6 +278,7 @@ public class TelaCadastroTutorController implements Initializable {
                 if (new TutorService().salvarOuAtualizar(tutor)) {
                     // Deu certo
                     // Posso fechar a janela
+                    this.tutorSalvo = tutor;
                     ((Stage) btnCancelar.getScene().getWindow()).close();
                 } else {
                     // Deu erro. O retorno do boolean veio false
@@ -369,4 +371,7 @@ public class TelaCadastroTutorController implements Initializable {
         lblErroNumero.setText(campos.contains("Numero") ? errors.get("Numero") : "");
     }
 
+    public Tutor getTutorSalvo(){
+        return this.tutorSalvo;
+    }
 }

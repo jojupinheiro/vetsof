@@ -257,4 +257,5 @@ public class TelaListaTutorController implements Initializable {
         Utils.formatTableColumnFaixaRenda(tableColumnFaixaRenda);
         Utils.formatTableColumnCpfOuCnpj(tableColumnCPF);
     }
+    
 }

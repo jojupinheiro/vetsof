@@ -65,15 +65,19 @@ public class TelaIPController implements Initializable {
     }
     
     private String criptografarSenha(String senha) {
-        try {
-            Key chave = new SecretKeySpec(Principal.CHAVE_SECRETA.getBytes(), "AES");
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.ENCRYPT_MODE, chave);
-            byte[] senhaCriptografada = cipher.doFinal(senha.getBytes());
-            return java.util.Base64.getEncoder().encodeToString(senhaCriptografada);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        if (senha == null || senha.equals("")) {
+            return "";
+        } else {
+            try {
+                Key chave = new SecretKeySpec(Principal.CHAVE_SECRETA.getBytes(), "AES");
+                Cipher cipher = Cipher.getInstance("AES");
+                cipher.init(Cipher.ENCRYPT_MODE, chave);
+                byte[] senhaCriptografada = cipher.doFinal(senha.getBytes());
+                return java.util.Base64.getEncoder().encodeToString(senhaCriptografada);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
     }
 

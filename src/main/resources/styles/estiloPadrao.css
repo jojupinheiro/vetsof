@@ -5,6 +5,7 @@
     -cor4: #4C5958;
     -cor5: #BFBFBF;
     -cor6: #abc4c2;
+    -cor7: #B5C9C7;
     
     -sombra-escura: #5a5c61;
     -sombra-cor4: #2f3033;
@@ -177,15 +178,18 @@
     -fx-font-weight: bolder;
     -fx-font-size: 14;
     -fx-border-width: 1px 1px 0px 1px !important;
+    -fx-background-insets: 0 0 -1px 0;
 }
 .tab{
     -fx-background-color:  -cor3;
     -fx-font-size: 13;
+    -fx-background-radius: 10 10 0 0;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: -cor3; 
-
+    -fx-background-color: -cor7; 
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
 }
 
 .tab-pane .tab-header-area .tab {
@@ -255,4 +259,8 @@
     -fx-border-radius: 5px;
     -fx-border-width: 1px;
     -fx-margin: 10px 0px 0px 0px;
+}
+
+#fundo-calculadora{
+    -fx-background-color: -cor7;
 }

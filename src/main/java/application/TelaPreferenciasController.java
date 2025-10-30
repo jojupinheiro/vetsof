@@ -1831,7 +1831,7 @@ public class TelaPreferenciasController implements Initializable {
         for (ValorPadrao item : valoresPadrao){
             switch (item.getCodigoValorPadrao()) {
                 case 1 -> txtValorDiariaInternacao.setText(Utils.imprimeValor(String.valueOf(item.getValorPadraoNumeral())));
-                case 2 -> scmbFormaPagamento.setValue(FormaPagamento.valueOf(item.getValorPadraoString()));
+                case 2 -> scmbFormaPagamento.setValue(item.getValorPadraoString() != null ? FormaPagamento.valueOf(item.getValorPadraoString()) : null);
                 default -> {
                 }
             }

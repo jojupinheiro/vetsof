@@ -342,8 +342,9 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         });
         
         btnAdicionarTutor.setOnAction((t) -> {
-            cadastrarTutor(btnLimpar.getScene().getWindow());
+            Tutor novoTutor = cadastrarTutor(btnLimpar.getScene().getWindow());
             listarTutores();
+            scmbTutor.setValue(novoTutor);
         });
         
         btnAdicionarClinica.setOnAction((t) -> {
@@ -353,8 +354,9 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         
         btnAdicionarPet.setOnAction((t) -> {
             if(scmbTutor.getValue() != null){
-                new MenuPrincipal().cadastrarPetDoTutor(scmbTutor.getValue(), btnLimpar.getScene().getWindow());
+                Pet novoPet = new MenuPrincipal().cadastrarPetDoTutor(scmbTutor.getValue(), btnLimpar.getScene().getWindow());
                 listarPets();
+                scmbPet.setValue(novoPet);
             }else{
                 new MenuPrincipal().cadastrarPet(btnLimpar.getScene().getWindow());
             }
@@ -500,6 +502,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
                 listarExamesSelecionados();
             }
             btnRemoverExame.setVisible(false);
+            calcularValorTotal();
         });
         
         
@@ -573,6 +576,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
                 listarServicosSelecionados();
             }
             btnRemoverServico.setVisible(false);
+            calcularValorTotal();
         });
 
         // Personalizando as células do ComboBox para exibir a Tooltip
@@ -884,6 +888,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
                 spnDoseAtual.getValueFactory().setValue(1);
                 spnDosesTotais.getValueFactory().setValue(1);
                 txtValorVacina.setText("");
+                txtObservacaoVacina.setText("");
                 //Testa se a data do atendimento está preenchida. Se true, coloca ela como data de vacina, se não, coloca a data atual.
                 if (dpDataAtendimento.getValue() != null) {
                     dpDtVacina.setValue(dpDataAtendimento.getValue());
@@ -1032,8 +1037,8 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
     }
 
     private void listarTutores() {
+        listaTutores = new TutorService().getAll(-1, "");
         ObservableList<Tutor> listaObsTutores = FXCollections.observableArrayList(listaTutores);
-//        cmbTutor.setItems(listaObsTutores);
         scmbTutor.setItems(listaObsTutores);
         
         scmbTutor.setCellFactory(param -> new ListCell<Tutor>() {
@@ -1102,7 +1107,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
     }
 
     private void listarPets() {
-        if (scmbTutor.getSelectionModel().getSelectedIndex() != -1) {
+        if (scmbTutor.getValue() != null) {
 //            listaPets = new PetService().getAll(13, String.valueOf(cmbTutor.getValue().getIdTutor()));
             listaPets = new PetService().getAll(13, scmbTutor.getValue().getIdTutor() + "");
         }
@@ -1244,8 +1249,10 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
                     for (Vacina item : listaVacinasSelecionadas){
                         new VacinaService().inserir(item);
                     }
-                    
-                    
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
+                    al.setTitle("Atendimento cadastrado");
+                    al.setContentText("O atendimento foi cadastrado com sucesso!");
+                    al.showAndWait();
                     // Posso fechar a janela
 //                    ((Stage) btnCancelar.getScene().getWindow()).close();
                     btnPrescricao.setVisible(true);

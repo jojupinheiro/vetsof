@@ -1,12 +1,9 @@
 package pdf;
 
-import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.HeaderFooter;
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
@@ -19,20 +16,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.awt.Color;
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import model.classes.Atendimento;
 import model.classes.prescricoes.FormatacaoPrescricao;
 import model.classes.prescricoes.Prescricao;
 import model.services.PrescricaoService;
@@ -350,7 +338,8 @@ public class ImpressaoPdf {
         parObservacoes.setIndentationLeft(formObservacoes.getRecuo());
         parObservacoes.add(
                 new Chunk(
-                        prescricao.getObservacoes(),
+                        "\n Informações adicionais: \n" + 
+                                prescricao.getObservacoes(),
                         fonteObservacoes
                 )
         );

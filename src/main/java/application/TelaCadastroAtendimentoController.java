@@ -78,8 +78,10 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
     @FXML    private Button btnInserirServico;
     @FXML    private Button btnInserirTipoVacina;
     @FXML    private Button btnLimpar;
-    @FXML    private Button btnLimparExame;
-    @FXML    private Button btnLimparServico;
+    @FXML    private Button btnLimparCamposExame;
+    @FXML    private Button btnLimparCamposServico;
+    @FXML    private Button btnLimparListaExame;
+    @FXML    private Button btnLimparListaServico;
     @FXML    private Button btnLimparVacina;
     @FXML    private Button btnPrescricao;
     @FXML    private Button btnRemoverExame;
@@ -132,6 +134,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
     @FXML    private Tab tabExames;
     @FXML    private Tab tabVacinas;
     @FXML    private TextArea txtAnamnese;
+    @FXML    private TextArea txtExameFisico;
     @FXML    private TextArea txtObservacao;
     @FXML    private TextArea txtObservacaoExame;
     @FXML    private TextArea txtObservacaoServico;
@@ -150,6 +153,8 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
     @FXML    private ToggleButton btn1Ano;
     
     private Atendimento atendimento;
+    private ExameRealizado exameSelecionado = null;
+    private ServicoRealizado servicoSelecionado = null;
     private Clinica clinicaPrincipal = new ClinicaService().getClinicaPrincipal();
     private List<Tutor> listaTutores = new TutorService().getAll(-1, "");
     private List<Exame> listaExames = new ExameService().getAll();
@@ -184,6 +189,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         txtObservacao.setText(atendimento.getDescricao()); //Setando a descrição do atendimento
         txtAnamnese.setText(atendimento.getAnamnese());
         txtDiagnostico.setText(atendimento.getDiagnostico());
+        txtExameFisico.setText(atendimento.getExameFisico());
         
         // Listando as vacinas na listView
         for(Vacina item : listaVacinas){
@@ -468,15 +474,16 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
 
                 ExameRealizado exameRealizado = new ExameRealizado(exame, valorExameSelecionado, observacoesExameSelecionado, ResultadoExame);
                 listaExamesSelecionados.add(exameRealizado);
+                if (exameSelecionado != null){
+                    listaExamesSelecionados.remove(exameSelecionado);
+                }
+                listarExamesSelecionados();
                 
                 ObservableList<ExameRealizado> listaObsExamSel = FXCollections.observableArrayList(listaExamesSelecionados);
                 listViewExames.setItems(listaObsExamSel);
                 
                 //Resetando os campos para o estado original
-                scmbExame.getSelectionModel().select(-1);
-                txtValorExame.setText("");
-                txtObservacaoExame.setText("");
-                txtResultadoExame.setText("");
+                limparCamposExame();
 
                 calcularValorTotal();
             }catch(ValidacaoException e){
@@ -485,12 +492,12 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         });
         
         scmbExame.setOnAction((t) -> {
-            if (scmbExame.getSelectionModel().getSelectedIndex() != -1){
+            if (scmbExame.getValue() != null){
                 txtValorExame.setText(String.valueOf(scmbExame.getValue().getValorExame()));
             }
         });
         
-        btnLimparExame.setOnAction((t) -> {
+        btnLimparListaExame.setOnAction((t) -> {
             listaExamesSelecionados.clear();
             listarExamesSelecionados();
             calcularValorTotal();
@@ -505,6 +512,8 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
             calcularValorTotal();
         });
         
+        btnLimparCamposExame.setOnAction((t) -> limparCamposExame());
+        btnLimparCamposServico.setOnAction((t) -> limparCamposServico());
         
         btnCadastrarServico.setOnAction((t) -> {
             try {
@@ -533,15 +542,15 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
                 
                 ServicoRealizado servicoRealizado = new ServicoRealizado(servico, valorServicoSelecionado, observacoesServicoSelecionado, qtdServicoRealizado);
                 listaServicosSelecionados.add(servicoRealizado);
+                if (servicoSelecionado != null){
+                    listaServicosSelecionados.remove(servicoSelecionado);
+                }
                 
-                ObservableList<ServicoRealizado> listaObsExamSel = FXCollections.observableArrayList(listaServicosSelecionados);
-                listViewServicos.setItems(listaObsExamSel);
+                ObservableList<ServicoRealizado> listaObsServSel = FXCollections.observableArrayList(listaServicosSelecionados);
+                listViewServicos.setItems(listaObsServSel);
                 
                 //Resetando os campos para o estado original
-                scmbServico.getSelectionModel().select(-1);
-                txtValorServico.setText("");
-                txtObservacaoServico.setText("");
-                spnQuantidadeServico.getValueFactory().setValue(1);
+                limparCamposServico();
 
                 calcularValorTotal();
             }catch(ValidacaoException e){
@@ -559,12 +568,12 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         });
         
         scmbServico.setOnAction((t) -> {
-            if (scmbServico.getSelectionModel().getSelectedIndex() != -1){
+            if (scmbServico.getValue() != null){
                 txtValorServico.setText(String.valueOf(scmbServico.getValue().getValorServico()));
             }
         });
         
-        btnLimparServico.setOnAction((t) -> {
+        btnLimparListaServico.setOnAction((t) -> {
             listaServicosSelecionados.clear();
             listarServicosSelecionados();
             calcularValorTotal();
@@ -671,11 +680,12 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         
         listViewExames.setOnMouseClicked((mouseEvent) -> {
             if (mouseEvent.getClickCount() == 2 && mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                ExameRealizado exameRealizado = listViewExames.getSelectionModel().getSelectedItem();
-                txtObservacaoExame.setText(exameRealizado.getObservacao());
-                txtValorExame.setText(String.valueOf(exameRealizado.getValor()));
-                txtResultadoExame.setText(exameRealizado.getResultado());
-                scmbExame.setValue(exameRealizado.getExame());
+                exameSelecionado = listViewExames.getSelectionModel().getSelectedItem();
+                txtObservacaoExame.setText(exameSelecionado.getObservacao());
+                txtValorExame.setText(String.valueOf(exameSelecionado.getValor()));
+                txtResultadoExame.setText(exameSelecionado.getResultado());
+                scmbExame.setValue(exameSelecionado.getExame());
+                btnCadastrarExame.setText("Alterar");
             }
         });
         
@@ -705,11 +715,12 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
         
         listViewServicos.setOnMouseClicked((mouseEvent) -> {
             if (mouseEvent.getClickCount() == 2 && mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                ServicoRealizado servicoRealizado = listViewServicos.getSelectionModel().getSelectedItem();
-                txtObservacaoServico.setText(servicoRealizado.getObservacao());
-                txtValorServico.setText(String.valueOf(servicoRealizado.getValor()));
-                scmbServico.setValue(servicoRealizado.getServico());
-                spnQuantidadeServico.getValueFactory().setValue(servicoRealizado.getQuantidade());
+                servicoSelecionado = listViewServicos.getSelectionModel().getSelectedItem();
+                txtObservacaoServico.setText(servicoSelecionado.getObservacao());
+                txtValorServico.setText(String.valueOf(servicoSelecionado.getValor()));
+                scmbServico.setValue(servicoSelecionado.getServico());
+                spnQuantidadeServico.getValueFactory().setValue(servicoSelecionado.getQuantidade());
+                btnCadastrarServico.setText("Alterar");
             }
         });
         
@@ -1211,6 +1222,7 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
                 atendimento.setAnamnese(txtAnamnese.getText().trim());
                 atendimento.setDescricao(txtObservacao.getText().trim());
                 atendimento.setDiagnostico(txtDiagnostico.getText().trim());
+                atendimento.setExameFisico(txtExameFisico.getText().trim());
 
                 // Ao final de todos os testes de campos, é necessário verificar se existem erros.
                 // Se existirem, aí sim eu disparo uma EXCEPTION que será capturada pelo CATCH
@@ -1425,6 +1437,24 @@ public class TelaCadastroAtendimentoController extends MenuPrincipal implements 
     private void listarServicosSelecionados() {
         ObservableList<ServicoRealizado> listaObsServSel = FXCollections.observableArrayList(listaServicosSelecionados);                                                                             
         listViewServicos.setItems(listaObsServSel);                                                                                                                                        
+    }
+    
+    private void limparCamposExame(){
+        scmbExame.setValue(null);
+        txtObservacaoExame.setText("");
+        txtResultadoExame.setText("");
+        txtValorExame.setText("");
+        exameSelecionado = null;
+        btnCadastrarExame.setText("Cadastrar");
+    }
+    
+    private void limparCamposServico(){
+        scmbServico.setValue(null);
+        txtObservacaoServico.setText("");
+        txtValorServico.setText("");
+        spnQuantidadeServico.getValueFactory().setValue(1);
+        servicoSelecionado = null;
+        btnCadastrarServico.setText("Cadastrar");
     }
     
 }

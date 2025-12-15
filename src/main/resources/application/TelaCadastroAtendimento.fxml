@@ -98,6 +98,87 @@
                         </Button>
                      </children>
                   </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button fx:id="btnSalvar" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Salvar" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <styleClass>
+                                    <String fx:value="botoesPadrao" />
+                                    <String fx:value="botoesSalvar" />
+                                 </styleClass>
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/salvar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnLimpar" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Limpar">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <styleClass>
+                                    <String fx:value="botoesPadrao" />
+                                    <String fx:value="botoesLimpar" />
+                                 </styleClass>
+                                 <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/excluir.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Button fx:id="btnSalvarEPrescricao" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="285.0" text="Salvar e gerar prescrição" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="botoesPadrao" />
+                              <String fx:value="botoesSalvar" />
+                           </styleClass>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/arquivo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnCancelar" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Sair">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <styleClass>
+                              <String fx:value="botoesPadrao" />
+                              <String fx:value="botoesCancelar" />
+                           </styleClass>
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/sair.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
                </children>
             </VBox>
          </children>
@@ -116,10 +197,10 @@
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="321.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="273.0" minHeight="10.0" prefHeight="196.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="321.0" minHeight="10.0" prefHeight="128.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <VBox alignment="CENTER" prefHeight="99.0" prefWidth="349.0">
@@ -146,6 +227,25 @@
                                        </children>
                                     </HBox>
                                     <Label fx:id="lblErroTutor" textFill="RED" />
+                                    <Label styleClass="lblPequeno" text="Pet*" />
+                                    <HBox alignment="CENTER" prefWidth="200.0">
+                                       <children>
+                                          <SearchableComboBox fx:id="scmbPet" prefWidth="280.0" promptText="Selecione" />
+                                          <Button fx:id="btnAdicionarPet" mnemonicParsing="false" styleClass="botoesInserir">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/plus.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="lblErroPet" textFill="RED" />
                                  </children>
                                  <padding>
                                     <Insets left="5.0" right="5.0" />
@@ -178,166 +278,6 @@
                                        </children>
                                     </HBox>
                                     <Label fx:id="lblErroClinica" textFill="RED" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Pet*" />
-                                    <HBox alignment="CENTER" prefWidth="200.0">
-                                       <children>
-                                          <SearchableComboBox fx:id="scmbPet" prefWidth="280.0" promptText="Selecione" />
-                                          <Button fx:id="btnAdicionarPet" mnemonicParsing="false" styleClass="botoesInserir">
-                                             <graphic>
-                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@images/plus.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                    <Label fx:id="lblErroPet" textFill="RED" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Observações" />
-                                    <TextArea fx:id="txtObservacao" prefHeight="200.0" wrapText="true">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </TextArea>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Data de atendimento*">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <DatePicker fx:id="dpDataAtendimento" prefWidth="200.0" promptText="dd/mm/aaaa" />
-                                    <Label fx:id="lblErroDataAtendimento" textFill="RED">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="99.0" prefWidth="349.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Diagnóstico" />
-                                    <TextField fx:id="txtDiagnostico" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="300.0" style="-fx-background-radius: 5; -fx-alignment: CENTER;">
-                                       <VBox.margin>
-                                          <Insets bottom="20.0" />
-                                       </VBox.margin>
-                                    </TextField>
-                                 </children>
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="5.0">
-                                       <children>
-                                          <Button fx:id="btnSalvar" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Salvar" textFill="WHITE">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                             <styleClass>
-                                                <String fx:value="botoesPadrao" />
-                                                <String fx:value="botoesSalvar" />
-                                             </styleClass>
-                                             <graphic>
-                                                <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@images/salvar.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </Button>
-                                          <Button fx:id="btnLimpar" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Limpar">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                             <styleClass>
-                                                <String fx:value="botoesPadrao" />
-                                                <String fx:value="botoesLimpar" />
-                                             </styleClass>
-                                             <graphic>
-                                                <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@images/excluir.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic></Button>
-                                       </children>
-                                    </HBox>
-                                    <Button fx:id="btnSalvarEPrescricao" alignment="CENTER" minHeight="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="285.0" text="Salvar e gerar prescrição" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <styleClass>
-                                          <String fx:value="botoesPadrao" />
-                                          <String fx:value="botoesSalvar" />
-                                       </styleClass>
-                                       <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/arquivo.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="btnCancelar" minHeight="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Sair">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <styleClass>
-                                          <String fx:value="botoesPadrao" />
-                                          <String fx:value="botoesCancelar" />
-                                       </styleClass>
-                                       <graphic>
-                                          <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/sair.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="792.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Anamnese" />
-                                    <TextArea fx:id="txtAnamnese" prefHeight="200.0" prefWidth="300.0" wrapText="true" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <children>
                                     <Label styleClass="lblPequeno" text="Veterinário*" />
                                     <HBox alignment="CENTER" prefWidth="200.0">
                                        <children>
@@ -359,8 +299,19 @@
                                     <Label fx:id="lblErroVeterinario" textFill="RED" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                                  <children>
+                                    <Label styleClass="lblPequeno" text="Data de atendimento*">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <DatePicker fx:id="dpDataAtendimento" prefWidth="200.0" promptText="dd/mm/aaaa" />
+                                    <Label fx:id="lblErroDataAtendimento" textFill="RED">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
                                     <Label styleClass="lblPequeno" text="Horário de atendimento (hh:mm)*">
                                        <padding>
                                           <Insets left="10.0" />
@@ -393,7 +344,48 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="792.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Anamnese" />
+                                    <TextArea fx:id="txtAnamnese" prefHeight="200.0" prefWidth="300.0" wrapText="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="792.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Exame Físico" />
+                                    <TextArea fx:id="txtExameFisico" prefHeight="200.0" prefWidth="300.0" wrapText="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Observações" />
+                                    <TextArea fx:id="txtObservacao" prefHeight="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                                 <children>
+                                    <Label styleClass="lblPequeno" text="Diagnóstico" />
+                                    <TextField fx:id="txtDiagnostico" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" style="-fx-background-radius: 5; -fx-alignment: CENTER;">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" styleClass="lblPequeno" text="Valor total*" textAlignment="CENTER" />
                                     <TextField fx:id="txtValorTotal" alignment="CENTER" maxWidth="150.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;">
@@ -416,72 +408,29 @@
           </Tab>
             <Tab fx:id="tabExames" text="Exames/Serviços realizados">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="659.0" prefWidth="933.0">
                      <children>
                         <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="507.0" minWidth="10.0" prefWidth="455.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="468.0" minWidth="2.0" prefWidth="2.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="457.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="5.0" minHeight="10.0" prefHeight="5.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="245.0" minHeight="10.0" prefHeight="159.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <VBox alignment="TOP_CENTER" prefHeight="163.0" prefWidth="463.0" spacing="5.0" GridPane.rowSpan="2">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Valor do exame" textAlignment="CENTER" />
-                                    <TextField fx:id="txtValorExame" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
-                                    <Button fx:id="btnCadastrarExame" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style=": #06472;" text="Cadastrar" textFill="WHITE">
+                                    <Label text="Exames">
                                        <font>
-                                          <Font name="System Bold" size="13.0" />
+                                          <Font name="System Bold" size="25.0" />
                                        </font>
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <styleClass>
-                                          <String fx:value="botoesPadrao" />
-                                          <String fx:value="botoesSalvar" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Valor do serviço" textAlignment="CENTER" />
-                                    <TextField fx:id="txtValorServico" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
-                                    <Label alignment="CENTER" layoutX="31.0" layoutY="70.0" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Quantidade" textAlignment="CENTER">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
                                     </Label>
-                                    <Spinner fx:id="spnQuantidadeServico" maxWidth="-Infinity" prefWidth="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Observações do serviço" />
-                                    <TextArea fx:id="txtObservacaoServico" maxHeight="100.0" prefHeight="100.0" wrapText="true">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </TextArea>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                                 <children>
                                     <Label styleClass="lblPequeno" text="Exame" />
-                                    <HBox prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefWidth="200.0" spacing="5.0">
                                        <children>
                                           <SearchableComboBox fx:id="scmbExame" prefWidth="280.0" promptText="Selecione" />
                                           <Button fx:id="btnInserirExame" mnemonicParsing="false" styleClass="botoesInserir">
@@ -498,42 +447,67 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <Label fx:id="lblErroTipoVacina1" textFill="RED">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Label>
                                     <Label fx:id="lblErroExame" textFill="RED" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Exames cadastrados" />
-                                    <ListView fx:id="listViewExames" prefHeight="90.0" prefWidth="300.0" />
-                                    <HBox alignment="CENTER" prefHeight="30.0" spacing="90.0">
-                                       <children>
-                                          <Button fx:id="btnRemoverExame" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" mnemonicParsing="false" prefWidth="125.0" styleClass="botoesTransparentes" text="Remover exame" textAlignment="CENTER">
-                                             <font>
-                                                <Font size="12.0" />
-                                             </font></Button>
-                                          <Button fx:id="btnLimparExame" alignment="CENTER" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" styleClass="botoesTransparentes" text="Limpar">
-                                             <font>
-                                                <Font size="12.0" />
-                                             </font></Button>
-                                       </children>
+                                    <Label styleClass="lblPequeno" text="Observações do exame" />
+                                    <TextArea fx:id="txtObservacaoExame" maxHeight="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" wrapText="true">
                                        <VBox.margin>
-                                          <Insets top="5.0" />
+                                          <Insets bottom="10.0" />
                                        </VBox.margin>
+                                    </TextArea>
+                                    <Label styleClass="lblPequeno" text="Resultado(s) do exame" />
+                                    <TextArea fx:id="txtResultadoExame" prefHeight="122.0" prefWidth="444.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextArea>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Valor do exame" textAlignment="CENTER" />
+                                                <TextField fx:id="txtValorExame" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                             </children>
+                                          </VBox>
+                                          <Button fx:id="btnCadastrarExame" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style=": #06472;" text="Cadastrar" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <styleClass>
+                                                <String fx:value="botoesPadrao" />
+                                                <String fx:value="botoesSalvar" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="btnLimparCamposExame" layoutX="248.0" layoutY="34.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" style=": #06472;" text="Limpar campos" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <styleClass>
+                                                <String fx:value="botoesPadrao" />
+                                                <String fx:value="botoesSalvar" />
+                                             </styleClass>
+                                          </Button>
+                                       </children>
                                     </HBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
                                  </padding>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
                                  <children>
+                                    <Label text="Serviços">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
                                     <Label styleClass="lblPequeno" text="Serviço" />
-                                    <HBox prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefWidth="200.0" spacing="5.0">
                                        <children>
                                           <SearchableComboBox fx:id="scmbServico" prefWidth="280.0" promptText="Selecione" />
                                           <Button fx:id="btnInserirServico" mnemonicParsing="false" styleClass="botoesInserir">
@@ -550,41 +524,89 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <Label fx:id="lblErroTipoVacina11" textFill="RED">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Label>
                                     <Label fx:id="lblErroServico" textFill="RED" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label styleClass="lblPequeno" text="Observações do exame" />
-                                    <TextArea fx:id="txtObservacaoExame" maxHeight="100.0" prefHeight="100.0" wrapText="true">
+                                    <Label styleClass="lblPequeno" text="Observações do serviço" />
+                                    <TextArea fx:id="txtObservacaoServico" maxHeight="100.0" minHeight="100.0" minWidth="100.0" prefHeight="100.0" wrapText="true">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </TextArea>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Valor do serviço" textAlignment="CENTER" />
+                                                      <TextField fx:id="txtValorServico" alignment="CENTER" maxWidth="100.0" style="-fx-alignment: CENTER; -fx-background-radius: 5;" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="18.0" prefWidth="303.0" styleClass="lblPequeno" text="Quantidade" textAlignment="CENTER">
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                      <Spinner fx:id="spnQuantidadeServico" editable="true" maxWidth="-Infinity" prefWidth="80.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
+                                             <children>
+                                                <Button fx:id="btnCadastrarServico" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style=": #06472;" text="Cadastrar" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <styleClass>
+                                                      <String fx:value="botoesPadrao" />
+                                                      <String fx:value="botoesSalvar" />
+                                                   </styleClass>
+                                                </Button>
+                                                <Button fx:id="btnLimparCamposServico" layoutX="189.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" style=": #06472;" text="Limpar campos" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <styleClass>
+                                                      <String fx:value="botoesPadrao" />
+                                                      <String fx:value="botoesSalvar" />
+                                                   </styleClass>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
                                  <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                                  </padding>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                                  <children>
-                                    <Label styleClass="lblPequeno" text="Serviços cadastrados" />
-                                    <ListView fx:id="listViewServicos" prefHeight="90.0" prefWidth="300.0" />
-                                    <HBox alignment="CENTER" prefHeight="30.0" spacing="85.0">
+                                    <Label styleClass="lblPequeno" text="Exames cadastrados" />
+                                    <ListView fx:id="listViewExames" prefHeight="90.0" prefWidth="300.0" />
+                                    <HBox alignment="CENTER" prefHeight="30.0" spacing="90.0">
                                        <children>
-                                          <Button fx:id="btnRemoverServico" alignment="CENTER" layoutX="245.0" layoutY="10.0" minHeight="30.0" mnemonicParsing="false" prefWidth="135.0" styleClass="botoesTransparentes" text="Remover serviço" textAlignment="CENTER">
+                                          <Button fx:id="btnRemoverExame" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" mnemonicParsing="false" prefWidth="125.0" styleClass="botoesTransparentes" text="Remover exame" textAlignment="CENTER">
                                              <font>
                                                 <Font size="12.0" />
-                                             </font></Button>
-                                          <Button fx:id="btnLimparServico" alignment="CENTER" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" styleClass="botoesTransparentes" text="Limpar">
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnLimparListaExame" alignment="CENTER" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" styleClass="botoesTransparentes" text="Limpar lista">
                                              <font>
                                                 <Font size="12.0" />
-                                             </font></Button>
+                                             </font>
+                                          </Button>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="5.0" />
@@ -595,58 +617,31 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </VBox>
-                              <VBox alignment="CENTER" layoutX="10.0" layoutY="177.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <Label styleClass="lblPequeno" text="Resultado(s) do exame" />
-                                    <TextArea fx:id="txtResultadoExame" prefHeight="200.0" wrapText="true">
+                                    <Label styleClass="lblPequeno" text="Serviços cadastrados" />
+                                    <ListView fx:id="listViewServicos" prefHeight="90.0" prefWidth="300.0" />
+                                    <HBox alignment="CENTER" prefHeight="30.0" spacing="85.0">
+                                       <children>
+                                          <Button fx:id="btnRemoverServico" alignment="CENTER" layoutX="245.0" layoutY="10.0" minHeight="30.0" mnemonicParsing="false" prefWidth="135.0" styleClass="botoesTransparentes" text="Remover serviço" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnLimparListaServico" alignment="CENTER" minHeight="30.0" minWidth="70.0" mnemonicParsing="false" styleClass="botoesTransparentes" text="Limpar lista">
+                                             <font>
+                                                <Font size="12.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets top="5.0" />
                                        </VBox.margin>
-                                    </TextArea>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
-                              </VBox>
-                              <Separator prefWidth="200.0" GridPane.rowIndex="2" />
-                              <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Separator prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Exames">
-                                       <font>
-                                          <Font name="System Bold" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
-                                 <children>
-                                    <Label text="Serviços">
-                                       <font>
-                                          <Font name="System Bold" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                 <children>
-                                    <Button fx:id="btnCadastrarServico" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" style=": #06472;" text="Cadastrar" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <styleClass>
-                                          <String fx:value="botoesPadrao" />
-                                          <String fx:value="botoesSalvar" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
                               </VBox>
                            </children>
                         </GridPane>
@@ -724,7 +719,7 @@
                                     <Insets bottom="15.0" left="10.0" />
                                  </padding>
                               </HBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
                                     <Label styleClass="lblPequeno" text="Vacinas cadastradas" />
                                     <ListView fx:id="listViewVacinas" prefHeight="150.0" prefWidth="300.0" />
@@ -832,7 +827,7 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="220.0" GridPane.rowIndex="3">
                                  <children>
-                                    <Label text="Observaçao da vacina" />
+                                    <Label text="Observação da vacina" />
                                     <TextArea fx:id="txtObservacaoVacina" maxHeight="-Infinity" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
                                  </children>
                                  <padding>

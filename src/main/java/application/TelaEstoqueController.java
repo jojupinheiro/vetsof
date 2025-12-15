@@ -215,6 +215,7 @@ public class TelaEstoqueController implements Initializable {
                 dpAquisicao.setValue(estoque.getDtAquisicao());
                 dpFabricacao.setValue(estoque.getDtFabricacao());
                 dpValidade.setValue(estoque.getDtValidade());
+                btnAdicionarAoEstoque.setText("Alterar produto");
             }
         });
         
@@ -351,6 +352,9 @@ public class TelaEstoqueController implements Initializable {
         dpAquisicao.setValue(LocalDate.now());
         dpFabricacao.setValue(null);
         dpValidade.setValue(null);
+        txtValorCusto.setText("");
+        txtValorVenda.setText("");
+        btnAdicionarAoEstoque.setText("Adicionar ao estoque");
         estoque = null;
     }
     

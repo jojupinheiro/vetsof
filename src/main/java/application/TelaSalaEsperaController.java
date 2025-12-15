@@ -324,6 +324,8 @@ public class TelaSalaEsperaController implements Initializable {
             new SalaEsperaService().excluir(paciente);
             paciente = null;
             atualizaTabela();
+            btnAtender.setVisible(false);
+            btnExcluir.setVisible(false);
         });
         
         btnExcluir.setOnAction((t) -> {
@@ -406,6 +408,12 @@ public class TelaSalaEsperaController implements Initializable {
         ckbAgendado.setSelected(false);
         ckbUrgencia.setSelected(false);
         scmbPet.setDisable(true);
+        btnSalvar.setVisible(true);
+        btnSalvar.setManaged(true);
+        btnAlterar.setVisible(false);
+        btnAlterar.setManaged(false);
+        btnAtender.setVisible(false);
+        btnExcluir.setVisible(false);
         paciente = null;
     }
 
@@ -581,6 +589,7 @@ public class TelaSalaEsperaController implements Initializable {
             System.out.println("Erro na validação");
             setErrorMessages(e.getErrors());
         }
+        
     }
     
 }

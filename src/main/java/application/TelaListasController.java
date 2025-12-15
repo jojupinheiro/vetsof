@@ -277,7 +277,27 @@ public class TelaListasController extends MenuPrincipal implements Initializable
             }
         });
         
+        miEstoque.setOnAction((t) -> {
+            try {
+                AnchorPane view = FXMLLoader.load(getClass().getResource("TelaEstoque.fxml"));
+                borderPane.setCenter(view);
+
+            } catch (IOException ex) {
+                Logger.getLogger(TelaListasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
         btnVendas.setOnAction((t) -> {
+            try {
+                AnchorPane view = FXMLLoader.load(getClass().getResource("TelaVendas.fxml"));
+                borderPane.setCenter(view);
+
+            } catch (IOException ex) {
+                Logger.getLogger(TelaListasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        miVendas.setOnAction((t) -> {
             try {
                 AnchorPane view = FXMLLoader.load(getClass().getResource("TelaVendas.fxml"));
                 borderPane.setCenter(view);
@@ -309,6 +329,7 @@ public class TelaListasController extends MenuPrincipal implements Initializable
             miVerPrescricao.setVisible(false);
             miVerSalaEspera.setVisible(false);
             miEstoque.setVisible(false);
+            miVendas.setVisible(false);
             miCadastrarInternado.setVisible(false);
             btnInternacao.setVisible(false);
             btnInternacao.setManaged(false);

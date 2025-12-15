@@ -34,6 +34,7 @@ import model.services.TutorService;
 import view.utils.MascarasFX;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.SearchableComboBox;
+import view.utils.DateUtils;
 
 /**
  * FXML Controller class
@@ -58,10 +59,10 @@ public class TelaCadastroPetController implements Initializable {
     @FXML    private TextField txtRfid;
     @FXML    private TextField txtPeso;
     @FXML    private TextArea txtObservacao;
-    @FXML    private CheckBox ckbCastrado;
     @FXML    private CheckBox ckbVivo;
     @FXML    private CheckBox ckbAdotado;
     @FXML    private Label lblNome;
+    @FXML    private Label lblErroCastrado;
     @FXML    private Label lblEspecie;
     @FXML    private Label lblErroEspecie;
     @FXML    private Label lblErroNome;
@@ -69,6 +70,8 @@ public class TelaCadastroPetController implements Initializable {
     @FXML    private Label lblErroSexo;
     @FXML    private Label lblErroTutor;
     @FXML    private Label lblTemperamento;
+    @FXML    private RadioButton rbCastradoNao;
+    @FXML    private RadioButton rbCastradoSim;
     @FXML    private RadioButton rbSexoM;
     @FXML    private RadioButton rbSexoF;
     @FXML    private SearchableComboBox<Especie> scmbEspecie;
@@ -105,6 +108,11 @@ public class TelaCadastroPetController implements Initializable {
         scmbTutor.getSelectionModel().select(pet.getTutorPet());
 //        cmbTutor.setValue(pet.getTutorPet());
 //        cmbTutor.setValue(pet);
+
+        int[] idadePet = DateUtils.calcularDiferencaData(pet.getDataNascimentoPet());
+        spnAnos.getValueFactory().setValue(idadePet[0]);
+        spnMeses.getValueFactory().setValue(idadePet[1]);
+
         if (pet.isSexoPet()) {
             rbSexoM.setSelected(true);
         } else {
@@ -116,9 +124,9 @@ public class TelaCadastroPetController implements Initializable {
             ckbVivo.setSelected(false);
         }
         if (pet.isCastrado()) {
-            ckbCastrado.setSelected(true);
+            rbCastradoSim.setSelected(true);
         } else {
-            ckbCastrado.setSelected(false);
+            rbCastradoNao.setSelected(false);
         }
         if (pet.isAdotado()) {
             ckbAdotado.setSelected(true);
@@ -232,11 +240,13 @@ public class TelaCadastroPetController implements Initializable {
                     pet.setDataNascimentoPet(null);
                 }
                 pet.setObservacao(txtObservacao.getText().trim());
-                if (ckbCastrado.isSelected()) {
-                    pet.setCastrado(true);
-                } else {
-                    pet.setCastrado(false);
+                
+                if (!rbCastradoNao.isSelected() && !rbCastradoSim.isSelected()){
+                    exc.adicionarErro("castrado", "Selecione se o animal é castrado!");
+                }else{
+                    pet.setCastrado(rbCastradoSim.isSelected());
                 }
+                
                 if (ckbVivo.isSelected()) {
                     pet.setVivo(true);
                 } else {
@@ -393,7 +403,8 @@ public class TelaCadastroPetController implements Initializable {
         scmbTutor.setValue(null);
         rbSexoF.setSelected(false);
         rbSexoM.setSelected(false);
-        ckbCastrado.setSelected(false);
+        rbCastradoNao.setSelected(false);
+        rbCastradoSim.setSelected(false);
         ckbVivo.setSelected(false);
         ckbAdotado.setSelected(false);
     }
@@ -407,6 +418,7 @@ public class TelaCadastroPetController implements Initializable {
         lblErroRaca.setText(campos.contains("Raca") ? errors.get("Raca") : "");
         lblErroTutor.setText(campos.contains("Tutor") ? errors.get("Tutor") : "");
         lblErroEspecie.setText(campos.contains("Especie") ? errors.get("Especie") : "");
+        lblErroCastrado.setText(campos.contains("castrado") ? errors.get("castrado") : "");
     }
     
     public Pet getPetCadastrado(){

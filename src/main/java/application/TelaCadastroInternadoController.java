@@ -423,9 +423,6 @@ public class TelaCadastroInternadoController implements Initializable {
             diaria.setData(dpDataDiaria.getValue());
         });
 
-//        String dataDiaria = dpDtInternacao.getValue().plusDays(counter - 1).format(dateFormatter);
-//        Label lblNumeroDiaria = new Label(String.valueOf(counter++) + " - " + dataDiaria);  // Criar e incrementar contador
-//        lblNumeroDiaria.getStyleClass().addAll("lblDiaria");
         //Cria o textField das notas com seu label
         VBox vBoxNotas = new VBox(0);
         TextArea txtNotas = new TextArea();

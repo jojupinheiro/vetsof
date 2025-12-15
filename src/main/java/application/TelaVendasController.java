@@ -86,6 +86,8 @@ public class TelaVendasController implements Initializable {
     float desconto = 0;
     float descontoPercentual = 0;
     String vendedor = Principal.usuarioLogado.getNomeUsuario();
+    // Variável para evitar loop infinito entre os listeners dos descontos
+    private boolean atualizandoDesconto = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -124,20 +126,22 @@ public class TelaVendasController implements Initializable {
         txtQuantidade.setOnAction((t) -> adicionarProdutoNaLista());
         txtCodigo.setOnAction((t) -> adicionarProdutoNaLista());
         
-        txtDescontoAbs.setOnAction((t) -> {
-            calcularValorTotal();
-            imprimirValorTotal();
-            descontoPercentual = desconto * 100 / valorTotal;
-            txtDescontoPercent.setText(Utils.imprimePorcentagem(descontoPercentual));
-        });
-        
-        txtDescontoPercent.setOnAction((t) -> {
-            calcularValorTotal();
-            aplicarDescontoPercentual();
-            imprimirValorTotal();
-            descontoPercentual = Float.parseFloat(txtDescontoPercent.getText());
-            desconto = 1- valorTotal * descontoPercentual;
-        });
+//        txtDescontoAbs.setOnAction((t) -> {
+//            calcularValorTotal();
+//            imprimirValorTotal();
+//            descontoPercentual = desconto * 100 / valorTotal;
+//            txtDescontoPercent.setText(Utils.imprimePorcentagem(descontoPercentual));
+//        });
+//        
+//        txtDescontoPercent.setOnAction((t) -> {
+//            calcularValorTotal();
+//            aplicarDescontoPercentual();
+//            imprimirValorTotal();
+//            descontoPercentual = Float.parseFloat(txtDescontoPercent.getText());
+//            desconto = 1- valorTotal * descontoPercentual;
+//        });
+
+        configurarListenersDesconto();
 
         ObservableList<FormaPagamento> listaObsFormaPagamento = FXCollections.observableArrayList(FormaPagamento.DINHEIRO, FormaPagamento.PIX,
                 FormaPagamento.DEBITO_VISTA, FormaPagamento.CREDITO_VISTA, FormaPagamento.DEBITO_PRAZO, FormaPagamento.CREDITO_PRAZO,
@@ -287,6 +291,7 @@ public class TelaVendasController implements Initializable {
         for (Estoque p : produtosVendidos){
             valorTotal += (p.getQuantidadeConsumida() * p.getValorVenda());
         }
+        valorTotalComDesconto = valorTotal;
     }
     
     private void aplicarDescontoAbsoluto(){
@@ -423,6 +428,99 @@ public class TelaVendasController implements Initializable {
         produtosVendidos.clear();
         cmbFormaPagamento.setValue(FormaPagamento.valueOf(TelaPreferenciasController.valoresPadrao.get(1).getValorPadraoString()));
         atualizarTabela();
+    }
+
+    private void configurarListenersDesconto() {
+        // Listener para o Desconto ABSOLUTO
+        txtDescontoAbs.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (atualizandoDesconto) {
+                return; // Se já estamos atualizando via código, ignorar
+            }
+            atualizandoDesconto = true; // Bloqueia o outro listener
+            try {
+                calcularValorTotal(); // Garante que valorTotal esteja atualizado (soma dos produtos)
+
+                if (valorTotal == 0) {
+                    txtDescontoPercent.setText("");
+                    lblTotal.setText("R$ 0,00");
+                    return;
+                }
+
+                float descAbs = 0;
+                try {
+                    // Converte o texto para float, tratando vírgula como ponto se necessário
+                    String valorLimpo = newValue.replace(",", ".");
+                    if (!valorLimpo.isEmpty()) {
+                        descAbs = Float.parseFloat(valorLimpo);
+                    }
+                } catch (NumberFormatException e) {
+                    descAbs = 0;
+                }
+
+                // Lógica: Atualiza a Porcentagem baseado no Absoluto
+                float percentual = (descAbs / valorTotal) * 100;
+
+                // Atualiza o campo de percentual (formatando para 2 casas decimais)
+                if (descAbs > 0) {
+                    txtDescontoPercent.setText(String.format("%.2f", percentual).replace(".", ","));
+                } else {
+                    txtDescontoPercent.setText("");
+                }
+
+                // Atualiza as variáveis globais e o Label
+                this.desconto = descAbs;
+                this.valorTotalComDesconto = valorTotal - descAbs;
+                imprimirValorTotal();
+
+            } finally {
+                atualizandoDesconto = false; // Libera a flag
+            }
+        });
+
+        // Listener para o Desconto PERCENTUAL
+        txtDescontoPercent.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (atualizandoDesconto) {
+                return; // Se já estamos atualizando via código, ignorar
+            }
+            atualizandoDesconto = true; // Bloqueia o outro listener
+            try {
+                calcularValorTotal();
+
+                if (valorTotal == 0) {
+                    txtDescontoAbs.setText("");
+                    lblTotal.setText("R$ 0,00");
+                    return;
+                }
+
+                float descPercent = 0;
+                try {
+                    String valorLimpo = newValue.replace(",", ".");
+                    if (!valorLimpo.isEmpty()) {
+                        descPercent = Float.parseFloat(valorLimpo);
+                    }
+                } catch (NumberFormatException e) {
+                    descPercent = 0;
+                }
+
+                // Lógica: Atualiza o Absoluto baseado na Porcentagem
+                float valorAbsoluto = valorTotal * (descPercent / 100);
+
+                // Atualiza o campo absoluto
+                if (descPercent > 0) {
+                    txtDescontoAbs.setText(String.format("%.2f", valorAbsoluto).replace(".", ","));
+                } else {
+                    txtDescontoAbs.setText("");
+                }
+
+                // Atualiza as variáveis globais e o Label
+                this.desconto = valorAbsoluto;
+                this.valorTotalComDesconto = valorTotal - valorAbsoluto;
+                imprimirValorTotal();
+
+            } finally {
+                atualizandoDesconto = false; // Libera a flag
+            }
+        });
     }
 
 }

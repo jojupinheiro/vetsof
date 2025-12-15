@@ -20,6 +20,7 @@ public class Atendimento {
     private String diagnostico;
     private String anamnese;
     private String tratamento;
+    private String exameFisico;
     private LocalDate dataAtendimento;
     private LocalTime horarioAtendimento; 
     private float valorTotal;
@@ -44,6 +45,41 @@ public class Atendimento {
         this.listaExames = listaExames;
     }
 
+    public Atendimento(int idAtendimento, Pet pet, Clinica clinica, Veterinario veterinario, Prescricao prescricao, String diagnostico, String anamnese, String tratamento, String exameFisico, LocalDate dataAtendimento, LocalTime horarioAtendimento, float valorTotal, String descricao, List<ServicoRealizado> listaServico, List<ExameRealizado> listaExames) {
+        this.idAtendimento = idAtendimento;
+        this.pet = pet;
+        this.clinica = clinica;
+        this.veterinario = veterinario;
+        this.prescricao = prescricao;
+        this.diagnostico = diagnostico;
+        this.anamnese = anamnese;
+        this.tratamento = tratamento;
+        this.exameFisico = exameFisico;
+        this.dataAtendimento = dataAtendimento;
+        this.horarioAtendimento = horarioAtendimento;
+        this.valorTotal = valorTotal;
+        this.descricao = descricao;
+        this.listaServico = listaServico;
+        this.listaExames = listaExames;
+    }
+
+    public Atendimento(Pet pet, Clinica clinica, Veterinario veterinario, Prescricao prescricao, String diagnostico, String anamnese, String tratamento, String exameFisico, LocalDate dataAtendimento, LocalTime horarioAtendimento, float valorTotal, String descricao, List<ServicoRealizado> listaServico, List<ExameRealizado> listaExames) {
+        this.pet = pet;
+        this.clinica = clinica;
+        this.veterinario = veterinario;
+        this.prescricao = prescricao;
+        this.diagnostico = diagnostico;
+        this.anamnese = anamnese;
+        this.tratamento = tratamento;
+        this.exameFisico = exameFisico;
+        this.dataAtendimento = dataAtendimento;
+        this.horarioAtendimento = horarioAtendimento;
+        this.valorTotal = valorTotal;
+        this.descricao = descricao;
+        this.listaServico = listaServico;
+        this.listaExames = listaExames;
+    }
+    
     public Atendimento(Pet pet, Clinica clinica, LocalDate dataAtendimento, LocalTime horarioAtendimento, float valorTotal, String descricao, List<ServicoRealizado> listaServico, List<ExameRealizado> listaExames) {
         this.pet = pet;
         this.clinica = clinica;
@@ -99,6 +135,14 @@ public class Atendimento {
 
     public void setTratamento(String tratamento) {
         this.tratamento = tratamento;
+    }
+
+    public String getExameFisico() {
+        return exameFisico;
+    }
+
+    public void setExameFisico(String exameFisico) {
+        this.exameFisico = exameFisico;
     }
 
     public Veterinario getVeterinario() {

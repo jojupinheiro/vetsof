@@ -55,67 +55,46 @@ public class AtendimentoDAO {
         ResultSet res = null;
         PreparedStatement stmt = null;
         try {
-            String sql = "SELECT a.*, p.*, c.*, t.*, v.*, e.*, r.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, bv.nome_bairro as nome_bairro_veterinario, mc.nome_municipio as nome_municipio_clinica, \n" +
-"                    mc.estado_municipio as estado_clinica, bc.nome_bairro as nome_bairro_clinica, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor\n" +
-"                    FROM atendimento a \n" +
-"                    LEFT JOIN pet p ON (p.pk_idpet = a.fk_idpet_atendimento) \n" +
-"                    LEFT JOIN raca r ON (p.fk_idraca_pet = r.pk_idraca) \n" +
-"                    LEFT JOIN especie e ON (r.fk_idespecie = e.pk_idespecie) \n" +
-"                    LEFT JOIN clinica c ON (c.pk_idclinica = a.fk_idclinica_atendimento) \n" +
-"                    LEFT JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) \n" +
-"                    LEFT JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) \n" +
-"                    LEFT JOIN tutor t on (t.pk_idtutor = p.fk_idtutor_pet) \n" +
-"                    LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) \n" +
-"                    LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) \n" +
-"                    LEFT JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) \n" +
-"                    LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) \n" +
-"                    LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) ";
+            String sql = """
+                         SELECT a.*, p.*, c.*, t.*, v.*, e.*, r.*, mv.nome_municipio as nome_municipio_veterinario, mv.estado_municipio as estado_veterinario, 
+                         bv.nome_bairro as nome_bairro_veterinario, mc.nome_municipio as nome_municipio_clinica, mc.estado_municipio as estado_clinica, 
+                         bc.nome_bairro as nome_bairro_clinica, mt.nome_municipio as nome_municipio_tutor, mt.estado_municipio as estado_tutor, bt.nome_bairro as nome_bairro_tutor
+                                             FROM atendimento a 
+                                             LEFT JOIN pet p ON (p.pk_idpet = a.fk_idpet_atendimento) 
+                                             LEFT JOIN raca r ON (p.fk_idraca_pet = r.pk_idraca) 
+                                             LEFT JOIN especie e ON (r.fk_idespecie = e.pk_idespecie) 
+                                             LEFT JOIN clinica c ON (c.pk_idclinica = a.fk_idclinica_atendimento) 
+                                             LEFT JOIN municipio mc ON (c.fk_idmunicipio_clinica = mc.pk_idmunicipio) 
+                                             LEFT JOIN bairro bc ON (c.fk_idbairro_clinica = bc.pk_idbairro) 
+                                             LEFT JOIN tutor t on (t.pk_idtutor = p.fk_idtutor_pet) 
+                                             LEFT JOIN municipio mt on (t.fk_idmunicipio_tutor = mt.pk_idmunicipio) 
+                                             LEFT JOIN bairro bt on (t.fk_idbairro_tutor = bt.pk_idbairro) 
+                                             LEFT JOIN veterinario v on (a.fk_idveterinario_atendimento = v.pk_idveterinario) 
+                                             LEFT JOIN municipio mv on (v.fk_idmunicipio_veterinario = mv.pk_idmunicipio) 
+                                             LEFT JOIN bairro bv on (v.fk_idbairro_veterinario = bv.pk_idbairro) """;
             
             String filtroSql = "";
 
             switch (filtroSelecionado) {
-                case -1:
-                    filtroSql = " ";
-                    break;
-                case 0:
-                    filtroSql = "WHERE a.pk_idatendimento = ? ";
-                    break;
-                case 1:
-                    filtroSql = "WHERE t.nome_tutor like ? ";
-                    break;
-                case 2:
-                    filtroSql = "WHERE p.nome_pet like ? ";
-                    break;
-                case 3:
-                    filtroSql = "WHERE c.nome_clinica like ? ";
-                    break;
-                case 4:
-                    filtroSql = "WHERE a.dt_atendimento BETWEEN ? AND ? ";
-                    break;
-                case 5:
-                    filtroSql = "WHERE t.cpf_tutor like ? ";
-                    break;
-                case 6:
-                    filtroSql = "WHERE p.rfid_pet like ?";
-                    break;
-                case 7:
-                    filtroSql = "";
-                    break;
-                case 8:
-                    filtroSql = "WHERE p.pk_idpet = ? ";
-                    break;
-
-                default:
-                    break;
+                case -1 -> filtroSql = " ";
+                case 0 -> filtroSql = "WHERE a.pk_idatendimento = ? ";
+                case 1 -> filtroSql = "WHERE t.nome_tutor like ? ";
+                case 2 -> filtroSql = "WHERE p.nome_pet like ? ";
+                case 3 -> filtroSql = "WHERE c.nome_clinica like ? ";
+                case 4 -> filtroSql = "WHERE a.dt_atendimento BETWEEN ? AND ? ";
+                case 5 -> filtroSql = "WHERE t.cpf_tutor like ? ";
+                case 6 -> filtroSql = "WHERE p.rfid_pet like ?";
+                case 7 -> filtroSql = "";
+                case 8 -> filtroSql = "WHERE p.pk_idpet = ? ";
+                default -> {
+                }
             }
-
             //preparando a String sql para execução
             sql += filtroSql;
             stmt = con.prepareStatement(sql);
             if (txtFiltro == null) {
                 txtFiltro = "";
             }
-            
             switch (filtroSelecionado) {
                 case 1:
                 case 2:
@@ -147,6 +126,7 @@ public class AtendimentoDAO {
                 String descricao = res.getString("descricao_atendimento");
                 String anamneseAtendimento = res.getString("anamnese_atendimento");
                 String diagnostico_atendimento = res.getString("diagnostico_atendimento");
+                String exame_fisico_atendimento = res.getString("exame_fisico_atendimento");
                 LocalDate dataAtendimento;
                 if (res.getDate("dt_atendimento") == null) {
                     dataAtendimento = null;
